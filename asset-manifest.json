@@ -1,23 +1,23 @@
 {
   "files": {
     "main.css": "/cod_tournament/static/css/main.e648480c.chunk.css",
-    "main.js": "/cod_tournament/static/js/main.94409e7e.chunk.js",
-    "main.js.map": "/cod_tournament/static/js/main.94409e7e.chunk.js.map",
+    "main.js": "/cod_tournament/static/js/main.96107d80.chunk.js",
+    "main.js.map": "/cod_tournament/static/js/main.96107d80.chunk.js.map",
     "runtime-main.js": "/cod_tournament/static/js/runtime-main.c0969373.js",
     "runtime-main.js.map": "/cod_tournament/static/js/runtime-main.c0969373.js.map",
-    "static/js/2.ec06063b.chunk.js": "/cod_tournament/static/js/2.ec06063b.chunk.js",
-    "static/js/2.ec06063b.chunk.js.map": "/cod_tournament/static/js/2.ec06063b.chunk.js.map",
+    "static/js/2.fc6fb244.chunk.js": "/cod_tournament/static/js/2.fc6fb244.chunk.js",
+    "static/js/2.fc6fb244.chunk.js.map": "/cod_tournament/static/js/2.fc6fb244.chunk.js.map",
     "static/js/3.530d46e0.chunk.js": "/cod_tournament/static/js/3.530d46e0.chunk.js",
     "static/js/3.530d46e0.chunk.js.map": "/cod_tournament/static/js/3.530d46e0.chunk.js.map",
     "index.html": "/cod_tournament/index.html",
     "static/css/main.e648480c.chunk.css.map": "/cod_tournament/static/css/main.e648480c.chunk.css.map",
-    "static/js/2.ec06063b.chunk.js.LICENSE.txt": "/cod_tournament/static/js/2.ec06063b.chunk.js.LICENSE.txt",
+    "static/js/2.fc6fb244.chunk.js.LICENSE.txt": "/cod_tournament/static/js/2.fc6fb244.chunk.js.LICENSE.txt",
     "static/media/App.css": "/cod_tournament/static/media/bg3.cf674720.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.c0969373.js",
-    "static/js/2.ec06063b.chunk.js",
+    "static/js/2.fc6fb244.chunk.js",
     "static/css/main.e648480c.chunk.css",
-    "static/js/main.94409e7e.chunk.js"
+    "static/js/main.96107d80.chunk.js"
   ]
 }
