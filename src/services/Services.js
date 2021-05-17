@@ -3,6 +3,7 @@ import NamesService from "./NamesService";
 import AuthService from "./AuthService";
 import StorageService from "./StorageService";
 import CodService from "./CodService";
+import UserService from "./UserService";
 
 class Service {
 
@@ -12,6 +13,10 @@ class Service {
 
   storage() {
     return new StorageService();
+  }
+
+  users() {
+    return new UserService();
   }
 
   tournaments() {

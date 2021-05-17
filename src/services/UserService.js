@@ -10,10 +10,8 @@ export default class UserService {
     database.ref('t').off();
   }
 
-  save(user) {
-    const newUserRef = database.ref().child('users').push();
-    user.id = newUserRef.key;
-    newUserRef.set(user);
+  save(user, callback) {
+    database.ref('users/'+user.id).set(user, callback);
   }
 
   update(id, user) {
@@ -32,6 +30,12 @@ export default class UserService {
 
   read(id, callback) {
     database.ref(`users/${id}`).on('value', (snapshot) => {
+      callback(snapshot.val());
+    });
+  }
+
+  readOnce(id, callback) {
+    database.ref(`users/${id}`).once('value').then((snapshot) => {
       callback(snapshot.val());
     });
   }

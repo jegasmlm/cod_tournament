@@ -19,8 +19,10 @@ function Tournament(props) {
   });
 
   useEffect(() => {
-    Services.tournaments().detach();
     loadTournament();
+    return () => {
+      Services.tournaments().detach();
+    };
   }, []);
 
   const loadTournament = () => {

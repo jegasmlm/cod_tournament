@@ -10,7 +10,6 @@ function Home() {
   const [tournaments, setTournaments] = useState([]);
 
   useEffect(() => {
-    Services.tournaments().detach();
     loadTournaments();
 
     /*Services.storage().listGuns().then((res) => {
@@ -20,6 +19,8 @@ function Home() {
         })
       });
     });*/
+
+    return () => Services.tournaments().detach();
   }, [])
 
   const loadTournaments = () => {
