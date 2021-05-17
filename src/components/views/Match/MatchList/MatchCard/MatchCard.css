@@ -1,0 +1,34 @@
+.match {
+  width: 100%;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.match th {
+  font-size: small;
+  text-align: left;
+  padding: 0 0.5rem 0.5rem 0;
+}
+
+.match td {
+  font-size: small;
+  text-align: left;
+  padding: 0 0.5rem 0 0;
+}
+
+.match-detail{
+  margin-top: 0;
+  overflow: hidden;
+  transition: all 400ms ease-in-out;
+}
+
+.match-detail.match--open{
+  margin-top: 1rem;
+}
+
+
+@media screen and (max-width: 480px) {
+  .match.card{
+    padding: 0.5rem;
+  }
+}

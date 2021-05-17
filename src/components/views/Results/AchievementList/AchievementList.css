@@ -1,0 +1,19 @@
+.achievement-list {
+  padding: 1rem 0;
+}
+
+.achievement-list > div {
+  margin: 1rem;
+}
+
+@media screen and (max-width: 426px) {
+  .achievement-list > div {
+    margin: 0;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .achievement-list > div {
+    margin: .5rem 0;
+  }
+}

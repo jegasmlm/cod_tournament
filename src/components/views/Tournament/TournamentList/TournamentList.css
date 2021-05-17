@@ -1,0 +1,11 @@
+.tournament-list > .card{
+  margin-top: 1rem;
+  margin-right: 1rem;
+  width: 300px;
+}
+
+@media screen and (max-width: 480px) {
+  .tournament-list > .card{
+    margin: 1rem 0;
+  }
+}

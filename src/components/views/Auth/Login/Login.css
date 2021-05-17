@@ -1,0 +1,19 @@
+.login-container {
+  height: 100vh;
+  text-align: center;
+}
+
+.login > * {
+  width: 20rem;
+}
+
+
+@media screen and (max-width: 375px) {
+  .login > *{
+    width: 100%;
+  }
+
+  .socials {
+    margin: 0 5rem;
+  }
+}

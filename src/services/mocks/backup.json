@@ -1,0 +1,254 @@
+[
+  {
+    "created": "2021-03-25T11:00:00.000Z",
+    "id": "50945ef0-498e-4755-9db6-a4b26ec9a271",
+    "name": "T1",
+    "teamSize": "4",
+    "open": true,
+    "players": [
+      "JEGA",
+      "Felducci",
+      "Joan",
+      "Onemi",
+      "MrRobot",
+      "Tesseract",
+      "Weedtoco",
+      "Christiam"
+    ],
+    "teams": [
+      {
+        "id": "03b2d167-8a85-45ee-afa8-63c0a8a073f0",
+        "tournamentId": "50945ef0-498e-4755-9db6-a4b26ec9a271",
+        "players": ["JEGA", "MrRobot", "Christiam", "Felducci"],
+        "matches": [
+          {
+            "id": "2029155f-009f-429e-aaae-01fbb02bf2fd",
+            "position": "1",
+            "teamScore": [
+              { "player": "JEGA", "kills": "9", "damage": "3967" },
+              { "player": "MrRobot", "kills": "6", "damage": "3597" },
+              { "player": "Christiam", "kills": "1", "damage": "951" },
+              { "player": "Felducci", "kills": "5", "damage": "2569" }
+            ]
+          },
+          {
+            "id": "c4699cce-055b-494c-9ce2-e5591bd504fa",
+            "position": "1",
+            "teamScore": [
+              { "player": "JEGA", "kills": "9", "damage": "3138" },
+              { "player": "MrRobot", "kills": "3", "damage": "1838" },
+              { "player": "Christiam", "kills": "2", "damage": "876" },
+              { "player": "Felducci", "kills": "4", "damage": "2255" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "b3fcbb49-a3d5-40f8-9e3e-198c9abf393f",
+        "tournamentId": "50945ef0-498e-4755-9db6-a4b26ec9a271",
+        "players": ["Joan", "Onemi", "Tesseract", "Weedtoco"],
+        "matches": [
+          {
+            "id": "171287b0-9667-4c21-9813-1dcfb8774e58",
+            "position": "5",
+            "teamScore": [
+              { "player": "Joan", "kills": "0", "damage": "729" },
+              { "player": "Onemi", "kills": "4", "damage": "1674" },
+              { "player": "Tesseract", "kills": "4", "damage": "1870" },
+              { "player": "Weedtoco", "kills": "0", "damage": "210" }
+            ]
+          },
+          {
+            "id": "24f60718-475f-4363-a02f-4dc043fd4fa5",
+            "position": "5",
+            "teamScore": [
+              { "player": "Joan", "kills": "0", "damage": "413" },
+              { "player": "Onemi", "kills": "4", "damage": "1779" },
+              { "player": "Tesseract", "kills": "0", "damage": "975" },
+              { "player": "Weedtoco", "kills": "1", "damage": "962" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "ce2f8c7d-e170-481a-9e5e-72f6ca721e87",
+        "tournamentId": "50945ef0-498e-4755-9db6-a4b26ec9a271",
+        "players": ["JEGA", "Felducci", "Christiam", "Weedtoco"],
+        "matches": [
+          {
+            "id": "0ecdc158-3b17-4fcb-94e0-7d7246e6be41",
+            "position": "5",
+            "teamScore": [
+              { "player": "JEGA", "kills": "9", "damage": "3068" },
+              { "player": "Felducci", "kills": "0", "damage": "885" },
+              { "player": "Christiam", "kills": "2", "damage": "1271" },
+              { "player": "Weedtoco", "kills": "2", "damage": "1283" }
+            ]
+          },
+          {
+            "id": "a6ee37fa-bfa8-457c-a319-0851b0d2cecd",
+            "position": "4",
+            "teamScore": [
+              { "player": "JEGA", "kills": "5", "damage": "2152" },
+              { "player": "Felducci", "kills": "3", "damage": "1968" },
+              { "player": "Christiam", "kills": "1", "damage": "874" },
+              { "player": "Weedtoco", "kills": "1", "damage": "1418" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "bcea0639-23b2-4096-8a50-69275d3760b4",
+        "tournamentId": "50945ef0-498e-4755-9db6-a4b26ec9a271",
+        "players": ["MrRobot", "Joan", "Onemi", "Tesseract"],
+        "matches": [
+          {
+            "id": "ba46cc10-9048-4d22-b66e-24ceb10932cb",
+            "position": "4",
+            "teamScore": [
+              { "player": "MrRobot", "kills": "4", "damage": "2886" },
+              { "player": "Joan", "kills": "4", "damage": "1786" },
+              { "player": "Onemi", "kills": "4", "damage": "2586" },
+              { "player": "Tesseract", "kills": "7", "damage": "2628" }
+            ]
+          },
+          {
+            "id": "2103095f-e7ec-4db4-9cd2-3009978541e5",
+            "position": "3",
+            "teamScore": [
+              { "player": "MrRobot", "kills": "3", "damage": "1331" },
+              { "player": "Joan", "kills": "4", "damage": "1009" },
+              { "player": "Onemi", "kills": "0", "damage": "1732" },
+              { "player": "Tesseract", "kills": "3", "damage": "962" }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "8db245c3-251e-45c6-ac8c-80131a3347c7",
+    "created": "2021-03-27T21:05:24.835Z",
+    "name": "T2",
+    "teamSize": "3",
+    "open": true,
+    "players": [
+      "JEGA",
+      "Felducci",
+      "Tesseract",
+      "Weedtoco",
+      "MrRobot",
+      "Christiam"
+    ],
+    "teams": [
+      {
+        "id": "4e861ce9-7d9c-4d73-bda0-e54e8c9d7497",
+        "tournamentId": "8db245c3-251e-45c6-ac8c-80131a3347c7",
+        "players": ["Weedtoco", "JEGA", "MrRobot"],
+        "matches": [
+          {
+            "id": "f6168840-fbec-4a3b-bc2c-a5db7f8e1147",
+            "created": "2021-03-27T22:33:35.706Z",
+            "position": "3",
+            "teamScore": [
+              { "player": "Weedtoco", "kills": "3", "damage": "957" },
+              { "player": "JEGA", "kills": "3", "damage": "1944" },
+              { "player": "MrRobot", "kills": "1", "damage": "556" }
+            ]
+          },
+          {
+            "id": "b9b3c6f8-1450-4291-a2ff-bbb77c7d001d",
+            "created": "2021-03-27T22:34:16.474Z",
+            "position": "7",
+            "teamScore": [
+              { "player": "Weedtoco", "kills": "0", "damage": "1366" },
+              { "player": "JEGA", "kills": "4", "damage": "1828" },
+              { "player": "MrRobot", "kills": "0", "damage": "894" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "85edbac1-fee2-40d0-8a71-52f29552ec49",
+        "tournamentId": "8db245c3-251e-45c6-ac8c-80131a3347c7",
+        "players": ["Felducci", "Christiam", "Tesseract"],
+        "matches": [
+          {
+            "id": "7fd6049b-efae-46ef-8eed-c93e6c08ea7f",
+            "created": "2021-03-27T22:34:47.958Z",
+            "position": "5",
+            "teamScore": [
+              { "player": "Felducci", "kills": "1", "damage": "815" },
+              { "player": "Christiam", "kills": "0", "damage": "1335" },
+              { "player": "Tesseract", "kills": "1", "damage": "1446" }
+            ]
+          },
+          {
+            "id": "19e9c728-c2c1-4aa1-813a-f6fb5f127244",
+            "created": "2021-03-27T22:36:20.540Z",
+            "position": "5",
+            "teamScore": [
+              { "player": "Felducci", "kills": "1", "damage": "410" },
+              { "player": "Christiam", "kills": "0", "damage": "914" },
+              { "player": "Tesseract", "kills": "4", "damage": "1570" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "6ae33f06-c87c-4f13-9485-74c93757afd4",
+        "tournamentId": "8db245c3-251e-45c6-ac8c-80131a3347c7",
+        "players": ["MrRobot", "Tesseract", "Weedtoco"],
+        "matches": [
+          {
+            "id": "51d94ff1-c468-4528-85a3-cc04cf4adffc",
+            "created": "2021-03-27T22:01:19.302Z",
+            "position": "2",
+            "teamScore": [
+              { "player": "MrRobot", "kills": "10", "damage": "4056" },
+              { "player": "Tesseract", "kills": "7", "damage": "1828" },
+              { "player": "Weedtoco", "kills": "8", "damage": "3982" }
+            ]
+          },
+          {
+            "id": "a9c71387-6e11-430c-9f9a-708ca4e22520",
+            "created": "2021-03-27T22:01:54.628Z",
+            "position": "2",
+            "teamScore": [
+              { "player": "MrRobot", "kills": "10", "damage": "3159" },
+              { "player": "Tesseract", "kills": "2", "damage": "1704" },
+              { "player": "Weedtoco", "kills": "4", "damage": "2280" }
+            ]
+          }
+        ]
+      },
+      {
+        "id": "6dcfca3b-aa0e-4a94-8815-305adbc3efa6",
+        "tournamentId": "8db245c3-251e-45c6-ac8c-80131a3347c7",
+        "players": ["Christiam", "JEGA", "Felducci"],
+        "matches": [
+          {
+            "id": "720f8a22-8d8b-43fe-bb2e-c9a5a267e1b1",
+            "created": "2021-03-27T22:02:32.301Z",
+            "position": "7",
+            "teamScore": [
+              { "player": "Christiam", "kills": "5", "damage": "1322" },
+              { "player": "JEGA", "kills": "5", "damage": "2762" },
+              { "player": "Felducci", "kills": "1", "damage": "755" }
+            ]
+          },
+          {
+            "id": "33df5b1b-c588-4036-b3ef-cf9e676cb667",
+            "created": "2021-03-27T22:02:50.440Z",
+            "position": "9",
+            "teamScore": [
+              { "player": "Christiam", "kills": "1", "damage": "740" },
+              { "player": "JEGA", "kills": "4", "damage": "1981" },
+              { "player": "Felducci", "kills": "1", "damage": "741" }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]
