@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Services from '../../../services/Services';
 import { Modal } from '../../elements/Modal';
+import NavigationBar from '../NavigationBar/NavigationBar';
 import TournamentForm from '../Tournament/TournamentForm/TournamentForm';
 import TournamentList from '../Tournament/TournamentList/TournamentList';
 import './Home.css';
@@ -31,6 +32,7 @@ function Home() {
 
   return (
     <div className='home v-layout'>
+      <NavigationBar />
       <div className='flex-grow v-layout start-tournament-btn'><button onClick={() => setIsOpen([true])}>Start Tournament</button></div>
       <h3>Tournaments</h3>
       <TournamentList tournaments={tournaments}/>

@@ -1,6 +1,8 @@
 import React, { useState, useRef } from 'react'
 import Services from '../../../services/Services';
 import noobAvatar from '../../../assets/imgs/noobAvatar.jpg';
+import { useEffect } from 'react/cjs/react.development';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 function EditUser({onSave}) {
   const [avatar, setAvatar] = useState(Services.auth().loggedUser().photoURL);
@@ -13,6 +15,23 @@ function EditUser({onSave}) {
   const [valid, setValid] = useState(false);
 
   const avatarInput = useRef(null);
+
+  useEffect(() => {
+    Services.users().read(Services.auth().loggedUser().uid, (user) => {
+      if(user){
+        setAvatar(user.avatar);
+        setEmail(user.email);
+        setName(user.name);
+        setCodUsername(user.codUsername);
+        setPlatform(user.platform);
+        setGamerTag(user.gamerTag);
+      }
+    })
+  }, []);
+
+  useEffect(() => {
+    setValid(name !== '' && codUsername !== '' && gamerTag !== '');
+  }, [name, codUsername, gamerTag])
 
   const changeAvatar = () => {
     if(avatarInput) {
@@ -33,12 +52,10 @@ function EditUser({onSave}) {
   }
 
   const onCodUsernameChanged = (value) => {
-    setValid(value && value !== '' && gamerTag !== '');
     setCodUsername(value);
   };
 
   const onGamerTagChanged = (value) => {
-    setValid(value && value !== '' && codUsername !== '');
     setGamerTag(value);
   };
 
@@ -69,12 +86,14 @@ function EditUser({onSave}) {
       platform: platform,
       gamerTag: gamerTag,
     }, () => {
+      document.location = "#";
       onSave();
     });
   }
 
   return (
-    <div className="v-layout mt ml mb mr" style={{height: '100vh'}}>
+    <div className="v-layout">
+      <NavigationBar back/>
       <div className="card align-stretch v-layout">
         <h3>Update your user info</h3>
         <label className="text-sm text-hint">Please update your information so you can participate in tournaments</label>
@@ -86,23 +105,23 @@ function EditUser({onSave}) {
           </div>
         </div>
         <div className="mt-2 justify-stretch align-center form-group">
-          <label style={{minWidth: '30%'}}>Email</label>
-          <input className="flex-grow ml" value={email} onChange={(e) => setEmail(e.target.value)} disabled />
+          <label style={{minWidth: '30%'}} className="mr">Email</label>
+          <input className="flex-grow" value={email} onChange={(e) => setEmail(e.target.value)} disabled />
         </div> 
         <div className="form-group mt">
-          <label style={{minWidth: '30%'}}>Name</label>
-          <input className="flex-grow ml" value={name} onChange={(e) => setName(e.target.value)} placeholder="Tournament username ..."/>
+          <label style={{minWidth: '30%'}} className="mr">Name</label>
+          <input className="flex-grow" value={name} onChange={(e) => setName(e.target.value)} placeholder="Tournament username ..."/>
         </div> 
         <div className="form-group mt">
-          <label style={{minWidth: '30%'}}>Call of duty<br/>username</label>
-          <input className="flex-grow ml" value={codUsername} onChange={(e) => onCodUsernameChanged(e.target.value)} placeholder="Your call of duty username ..."/>
+          <label style={{minWidth: '30%'}} className="mr">Call of duty<br/>username</label>
+          <input className="flex-grow" value={codUsername} onChange={(e) => onCodUsernameChanged(e.target.value)} placeholder="Your call of duty username ..."/>
         </div> 
-        <div className="form-group mt">
+        <div className="form-group mt h-layout">
           <select  style={{minWidth: '30%'}} value={platform} onChange={(e) => setPlatform(e.target.value)}>
             <option className="select-option" value="battlenet">BattleNet</option>
             <option className="select-option" value="activision">Activision</option>
           </select>
-          <input className="flex-grow ml" placeholder={platform === 'battlenet' ? 'Battle tag ...' : 'Actividion Id ...'} value={gamerTag} onChange={(e) => onGamerTagChanged(e.target.value)}/>
+          <input className="flex-grow " placeholder={platform === 'battlenet' ? 'Battle tag ...' : 'Actividion Id ...'} value={gamerTag} onChange={(e) => onGamerTagChanged(e.target.value)}/>
         </div> 
         <button className="mt" onClick={() => saveUser()} disabled={!valid}>Save</button>
       </div>

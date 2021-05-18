@@ -1,8 +1,7 @@
 .home {
   min-height: 100vh;
-  padding: 1rem;
+  padding-bottom: 2rem;
   box-sizing: border-box;
-  padding: 2rem 0;
 }
 
 .start-tournament-btn {

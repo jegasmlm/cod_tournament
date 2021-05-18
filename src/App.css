@@ -22,13 +22,10 @@
 }
 
 .top-bar {
-  position: absolute;
-  left: 0;
-  top: 0;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: space-between;
   padding: 2rem;
   box-sizing: border-box;
 }
@@ -36,11 +33,6 @@
 @media screen and (max-width: 480px) {
   .top-bar {
     position: relative;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
     padding: 1rem;
-    box-sizing: border-box;
   }
 }

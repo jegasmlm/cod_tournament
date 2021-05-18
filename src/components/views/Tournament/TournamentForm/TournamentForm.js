@@ -95,7 +95,7 @@ function TournamentForm({onSave}) {
   });
 
   const searchedPlayerList = searchedPlayers.map((player, index) => {
-    return <span class="btn btn--sm text-sm" style={{marginRight: 4}} onClick={() => onSearchedPlayerClick(index)}>{player.name}</span>;
+    return <span class="btn btn--sm text-sm" style={{marginRight: 4, marginTop: 4}} onClick={() => onSearchedPlayerClick(index)}>{player.name}</span>;
   });
   
   const createOrder = (data, actions) =>{
@@ -132,7 +132,7 @@ function TournamentForm({onSave}) {
         </div>
         <input className="mb" type='text' value={playerSearch} onChange={(e) => searchPlayer(e.target.value)} placeholder="Search player ..."/>
         { searchedPlayers.length > 0 && (
-          <div className="h-layout card searched-players">
+          <div className="h-layout justify-left card float-menu searched-players">
             {searchedPlayerList}
           </div>
         )}

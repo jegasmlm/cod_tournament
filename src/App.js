@@ -39,7 +39,6 @@ function App() {
       <div className='app'>
         <div className='app-bg'></div>
         <div className='app-content'>
-          <NavigationBar />
           <HashRouter>
             <Switch>
               { !auth.isUserSet && (
@@ -53,6 +52,9 @@ function App() {
               <Redirect exact from="/login" to="/" />
               <Redirect exact from="/signup" to="/" />
               <Route path="/tournament/:id" component={Tournament} />
+              <Route path="/editUser">
+                <EditUser onSave={() => {}} />
+              </Route>
               <Route path="/">
                 <Home />
               </Route>

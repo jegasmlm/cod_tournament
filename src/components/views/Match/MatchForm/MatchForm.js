@@ -92,7 +92,7 @@ function MatchForm({team, onSave}) {
       <div key={index} className="form-group match-player-form">
         <label className='flex-grow mr'>{score.player.name || score.player}</label>
         <input id={'playerNameInput'+index} type='number' value={score.kills}  placeholder='Kills' onChange={(e) => setPlayerKills(index, e.target.value)} autoComplete="off"  min="1" max="100"/>
-        <input className="ml" id={'playerNameInput'+index} type='number' value={score.damage}  placeholder='Dmg' onChange={(e) => setPlayerDamage(index, e.target.value)} autoComplete="off"  min="1" max="100000"/>
+        <input className="" id={'playerNameInput'+index} type='number' value={score.damage}  placeholder='Dmg' onChange={(e) => setPlayerDamage(index, e.target.value)} autoComplete="off"  min="1" max="100000"/>
       </div>
     )
   });
@@ -102,7 +102,7 @@ function MatchForm({team, onSave}) {
       <div>
         <div className="form-group h-layout">
           <label className='flex-grow' htmlFor='matchPositionInput'>Match Id</label>
-          <input className="ml mr" id='matchIdInput' type='text' value={matchId} onChange={(e) => setMatchId(e.target.value)} />
+          <input className="" id='matchIdInput' type='text' value={matchId} onChange={(e) => setMatchId(e.target.value)} />
           <button onClick={() => loadMatch()}>Load</button>
         </div>
         <div className="form-group h-layout">

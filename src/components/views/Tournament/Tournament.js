@@ -7,6 +7,7 @@ import { Modal } from '../../elements/Modal';
 import TeamForm from '../Team/TeamForm/TeamForm';
 import moment from 'moment';
 import RandomTeams from '../RandomTeams/RandomTeams';
+import NavigationBar from '../NavigationBar/NavigationBar';
 
 function Tournament(props) {
   const [modalIsOpen, setIsOpen] = useState([false]);
@@ -51,6 +52,7 @@ function Tournament(props) {
 
   return (
     <div className='tournament v-layout'>
+      <NavigationBar back/>
       <h2>{tournament.name}</h2>
       <div className='mb h-layout'>
         <div className='mr-3'><span className='text-accent text-sm'>Date</span> {moment(tournament.created).format('MM/DD/YYYY')}</div>
@@ -60,9 +62,9 @@ function Tournament(props) {
       { tournament.teams && <Results tournament={tournament} /> }
       <h3 className='mt-3'>Teams</h3>
       { tournament.open && <div className='h-layout'>
-        <button className='mr btn--danger' onClick={() => closeTournament()}>Close Tournament</button>
-        <button className='mr' onClick={() => setRandomTeamsIsOpen([true])}>Generate Teams</button>
-        <button onClick={() => setIsOpen([true])}>Add Team</button>
+        <button className='mr mb btn--danger' onClick={() => closeTournament()}>Close Tournament</button>
+        <button className='mr mb' onClick={() => setRandomTeamsIsOpen([true])}>Generate Teams</button>
+        <button className="mb" onClick={() => setIsOpen([true])}>Add Team</button>
       </div> }
       { tournament.teams && <TeamList tournamentOpen={tournament.open} tournamentId={tournament.id}/> }
       
