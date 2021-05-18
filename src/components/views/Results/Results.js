@@ -24,8 +24,6 @@ function Results({tournament}) {
     setResult(Services.tournaments().getResults(tournament));
   }, [tournament]);
 
-  console.log(result);
-
   const playerScoreTable = result.players.map((player, index) => {
     return (
       <tr key={'playerScore-'+index}>

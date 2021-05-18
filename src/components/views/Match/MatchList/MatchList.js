@@ -20,7 +20,7 @@ function MatchList({tournamentOpen, tournamentId, teamId, onDelete}) {
   const matchCards = matches.map((match, index) => {
     return (
       <CSSTransition key={match.id} timeout={400} classNames="card">
-        <MatchCard tournamentOpen={tournamentOpen} match={match} onDelete={onDelete}/>
+        <MatchCard tournamentOpen={tournamentOpen} match={match} onDelete={onDelete} tournamentId={tournamentId}/>
       </CSSTransition>
     )
   });

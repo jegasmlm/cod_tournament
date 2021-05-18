@@ -3,7 +3,6 @@ import Services from '../../../../services/Services';
 import { v4 as uuidv4 } from 'uuid';
 import './MatchForm.css';
 import { useEffect } from 'react';
-import CodService from '../../../../services/CodService';
 
 const codService = Services.cod();
 
@@ -17,7 +16,7 @@ function MatchForm({team, onSave}) {
     position: '',
     teamScore: team.players.map((player) => {
       return {
-        player: player,
+        player: player.id,
         kills: '',
         damage: ''
       }
@@ -88,9 +87,10 @@ function MatchForm({team, onSave}) {
   }
 
   const teamScore = match.teamScore.map((score, index) => {
+    const playerInfo = team.players.find((player) => player.id === score.player);
     return (
       <div key={index} className="form-group match-player-form">
-        <label className='flex-grow mr'>{score.player.name || score.player}</label>
+        <label className='flex-grow mr'>{playerInfo.name || score.player}</label>
         <input id={'playerNameInput'+index} type='number' value={score.kills}  placeholder='Kills' onChange={(e) => setPlayerKills(index, e.target.value)} autoComplete="off"  min="1" max="100"/>
         <input className="" id={'playerNameInput'+index} type='number' value={score.damage}  placeholder='Dmg' onChange={(e) => setPlayerDamage(index, e.target.value)} autoComplete="off"  min="1" max="100000"/>
       </div>

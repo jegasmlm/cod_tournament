@@ -64,6 +64,12 @@ export default class TournamentService {
     database.ref(`t/${tournamentId}/teams/${teamId}`).remove();
   }
 
+  listPlayers(callback, id) {
+    database.ref(`t/${id}/players/`).on('value', (snapshot) => {
+      callback(snapshot.val());
+    });
+  }
+
   listTeams(callback, tournamentId) {
     this.read((tournament) => {
       if(tournament){

@@ -1,18 +1,26 @@
+import React, { useState, useEffect } from 'react';
 import moment from 'moment';
-import { useState } from 'react';
 import Services from '../../../../../services/Services';
 import './MatchCard.css';
 import noobAvatar from '../../../../../assets/imgs/noobAvatar.jpg';
 
-function MatchCard({tournamentOpen, match, onDelete}) {
+function MatchCard({tournamentOpen, tournamentId, match, onDelete}) {
   const tournamentService = Services.tournaments();
   const [open, setOpen] = useState(false);
+  const [players, setPlayers] = useState([]);
+
+  useEffect(() =>{
+    Services.tournaments().listPlayers(players => {
+      setPlayers(players);
+    } , tournamentId);
+  }, []);
 
   const playerScore = match.teamScore.map((score, index) => {
+    const playerInfo = players.find((player) => player.id === score.player);
     return (
       <tr key={index}>
-        <td><img className="avatar" src={score.player.avatar || noobAvatar} /></td>
-        <td>{score.player.name || score.player}</td>
+        <td><img className="avatar" src={playerInfo && playerInfo.avatar || noobAvatar} /></td>
+        <td>{playerInfo && playerInfo.name || score.player}</td>
         <td>{score.kills}</td>
         <td>{score.damage}</td>
       </tr>

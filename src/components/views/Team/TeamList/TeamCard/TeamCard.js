@@ -21,11 +21,10 @@ function TeamCard({ tournamentOpen, team}) {
     setIsOpen([false]);
   };
 
-  const players = team.players.map((player, index) => {
-
+  const players = team.players.filter(player => player).map((player, index) => {
     return (
       <>
-        { player.avatar && <img className="avatar mr" src={player.avatar}/>}
+        { player.avatar && <img className="avatar mr" src={player.avatar} key={player.id || index}/>}
         { !player.avatar && <span className='mr text-sm' key={player.id || index}>{player.name || player}</span> }
       </>
     );
