@@ -10,6 +10,7 @@ import RandomTeams from '../RandomTeams/RandomTeams';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { toList } from '../../../utils/Utils';
 import Avatar from '../../elements/Avatar';
+import PlayerItem from '../../elements/PlayerItem';
 
 function Tournament(props) {
   const [modalIsOpen, setIsOpen] = useState([false]);
@@ -48,10 +49,7 @@ function Tournament(props) {
 
   const players = toList(tournament.players).map((player, index) => {
     return (
-      <div className="v-layout mr" key={player.id || index}>
-        <Avatar url={player.avatar || null}/>
-        <span>{player.name || player}</span>
-      </div>
+      <PlayerItem className="mr" size="sm" key={player.id || index} player={player}/>
     )
   })
 

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Services from '../../../../../services/Services';
 import Avatar from '../../../../elements/Avatar';
 import { Modal } from '../../../../elements/Modal';
+import PlayerItem from '../../../../elements/PlayerItem';
 import MatchForm from '../../../Match/MatchForm/MatchForm';
 import MatchList from '../../../Match/MatchList/MatchList';
 import './TeamCard.css';
@@ -24,10 +25,7 @@ function TeamCard({ tournamentOpen, team}) {
 
   const players = team.players.filter(player => player).map((player, index) => {
     return (
-      <div className="v-layout mr mb" key={player.id || index}>
-        <Avatar url={player.avatar || null}/>
-        <span className="text-xs">{player.name || player}</span>
-      </div>
+      <PlayerItem className="mr mb" size="xs" player={player} key={player.id || index} />
     );
   });
 

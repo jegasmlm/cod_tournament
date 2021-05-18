@@ -3,15 +3,13 @@ import Services from '../../../../../services/Services';
 import './TournamentCard.css';
 import { toList } from '../../../../../utils/Utils';
 import Avatar from '../../../../elements/Avatar';
+import PlayerItem from '../../../../elements/PlayerItem';
 
 function TournamentCard({ tournament }) {
 
   const players = toList(tournament.players).map((player, index) => {
     return (
-      <div className="v-layout mr mb" key={player.id || index}>
-        <Avatar url={player.avatar || null}/>
-        <span className="text-xs">{player.name || player}</span>
-      </div>
+      <PlayerItem style={{marginTop: 4, marginLeft: 4}} size='xs' player={player} />
     );
   });
 

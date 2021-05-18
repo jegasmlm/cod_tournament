@@ -47,7 +47,7 @@ function NavigationBar({back}) {
           { user && (
           <>
               <Avatar url={avatar}/>
-              <h3 className='text-sm hidde-mobile'>{user.name ? user.name : user.email.split('@')[0] }</h3>
+              <h3 className='text-sm hidde-mobile ml'>{user.name ? user.name : user.email.split('@')[0] }</h3>
               { user.gamerTag && <h4 className='text-sm ml hidde-mobile'>{user.gamerTag}</h4> }
           </>
           )}

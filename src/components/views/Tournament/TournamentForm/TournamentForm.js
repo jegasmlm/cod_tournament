@@ -7,6 +7,7 @@ import React from "react";
 import ReactDOM from "react-dom"
 import paypal from 'paypal-checkout';
 import { toList } from '../../../../utils/Utils';
+import PlayerItem from '../../../elements/PlayerItem';
 
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
@@ -102,10 +103,7 @@ function TournamentForm({onSave}) {
 
   const searchedPlayerList = toList(searchedPlayers).map((player) => {
     return (
-      <div className="btn btn--secondary btn--sm h-layout" style={{marginRight: 4, marginTop: 4}}>
-        <img className="avatar" src={player.avatar}/>
-        <span class="text-sm" style={{marginLeft: 4}} onClick={() => onSearchedPlayerClick(player.id)}>{player.name}</span>
-      </div>
+      <PlayerItem className="btn btn--secondary btn--sm h-layout" style={{marginRight: 4, marginTop: 4}} player={player} size='sm' onClick={() => onSearchedPlayerClick(player.id)}/>
     );
   });
   
