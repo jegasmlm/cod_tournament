@@ -1,8 +1,8 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import Services from '../../../services/Services';
 import noobAvatar from '../../../assets/imgs/noobAvatar.jpg';
-import { useEffect } from 'react/cjs/react.development';
 import NavigationBar from '../NavigationBar/NavigationBar';
+import { validate } from 'uuid';
 
 function EditUser({onSave}) {
   const [avatar, setAvatar] = useState(Services.auth().loggedUser().photoURL);
@@ -17,7 +17,7 @@ function EditUser({onSave}) {
   const avatarInput = useRef(null);
 
   useEffect(() => {
-    Services.users().read(Services.auth().loggedUser().uid, (user) => {
+    Services.users().readOnce(Services.auth().loggedUser().uid, (user) => {
       if(user){
         setAvatar(user.avatar);
         setEmail(user.email);
@@ -30,8 +30,18 @@ function EditUser({onSave}) {
   }, []);
 
   useEffect(() => {
-    setValid(name !== '' && codUsername !== '' && gamerTag !== '');
-  }, [name, codUsername, gamerTag])
+    const filled = name !== '' && codUsername !== '' && gamerTag !== '';
+    let validTag = true;
+    if(platform === 'battlenet'){
+      const splitTag = gamerTag.split("#");
+      if(splitTag.length !== 2 || isNaN(splitTag[1]) || isNaN(parseFloat(splitTag[1]))){
+        validTag = false
+      }
+    } else {
+      validTag = !isNaN(gamerTag) && !isNaN(parseFloat(gamerTag));
+    }
+    setValid(filled && validTag);
+  }, [name, codUsername, gamerTag, platform])
 
   const changeAvatar = () => {
     if(avatarInput) {
