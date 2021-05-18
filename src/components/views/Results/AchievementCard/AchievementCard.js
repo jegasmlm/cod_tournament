@@ -1,5 +1,5 @@
+import Avatar from '../../../elements/Avatar';
 import './AchievementCard.css';
-import noobAvatar from '../../../../assets/imgs/noobAvatar.jpg'
 
 function AchievementCard({achievement}) {
   
@@ -8,7 +8,7 @@ function AchievementCard({achievement}) {
       <div><i className={'fa-2x fas fa-'+achievement.icon} style={{color: achievement.iconColor}}></i></div>
       <h3 className='text-sm text-accent mt'>{achievement.name}</h3>
       <div className="h-layout mb">
-        <img className='avatar mr' src={achievement.player.avatar || noobAvatar} />
+        <Avatar url={achievement.player.avatar || null} />
         <div className='text-lg'>{achievement.player.name}</div>
       </div>
       <div><span className='text-sm text-accent'>{achievement.attr}: </span>{achievement.value}</div>

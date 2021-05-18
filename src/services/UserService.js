@@ -14,8 +14,17 @@ export default class UserService {
     database.ref('users/'+user.id).set(user, callback);
   }
 
-  update(id, user) {
-    database.ref(`users/${id}`).set(user);
+  update(id, user, callback) {
+    console.debug(`Updating`);
+    database.ref(`ut/${id}`).on('value', (snapshot) => {
+      var updates = {};
+      updates[`/users/${id}`] = user;
+      Object.keys(snapshot.val()).forEach((key) => {
+        updates[`/t/${key}/players/${id}`] = user;
+
+      });
+      database.ref().update(updates, callback);
+    });
   }
 
   delete(id) {

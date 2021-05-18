@@ -1,12 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Services from '../../../services/Services';
+import Avatar from '../../elements/Avatar';
 import './NavigationBar.css';
-import noobAvatar from '../../../assets/imgs/noobAvatar.jpg';
 
 function NavigationBar({back}) {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [user, setUser] = useState(null)
-  const [avatar, setAvatar] = useState(noobAvatar)
+  const [avatar, setAvatar] = useState(null)
 
   useEffect(() => {
     const loggedUser = Services.auth().loggedUser();
@@ -46,7 +46,7 @@ function NavigationBar({back}) {
         <div className="top-bar-user h-layout relative" onClick={() => setIsMenuOpen(!isMenuOpen)}>
           { user && (
           <>
-              <img className='avatar mr' src={avatar}/>
+              <Avatar url={avatar}/>
               <h3 className='text-sm hidde-mobile'>{user.name ? user.name : user.email.split('@')[0] }</h3>
               { user.gamerTag && <h4 className='text-sm ml hidde-mobile'>{user.gamerTag}</h4> }
           </>

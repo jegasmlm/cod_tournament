@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import Services from '../../../../../services/Services';
+import Avatar from '../../../../elements/Avatar';
 import { Modal } from '../../../../elements/Modal';
 import MatchForm from '../../../Match/MatchForm/MatchForm';
 import MatchList from '../../../Match/MatchList/MatchList';
 import './TeamCard.css';
-import noobAvatar from '../../../../../assets/imgs/noobAvatar.jpg';
 
 function TeamCard({ tournamentOpen, team}) {
   const [modalIsOpen, setIsOpen] = useState([false]);
@@ -25,7 +25,7 @@ function TeamCard({ tournamentOpen, team}) {
   const players = team.players.filter(player => player).map((player, index) => {
     return (
       <div className="v-layout mr mb" key={player.id || index}>
-        <img className="avatar" src={player.avatar || noobAvatar}/>
+        <Avatar url={player.avatar || null}/>
         <span className="text-xs">{player.name || player}</span>
       </div>
     );

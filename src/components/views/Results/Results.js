@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Services from '../../../services/Services';
+import Avatar from '../../elements/Avatar';
 import AchievementList from './AchievementList/AchievementList';
 import './Results.css';
-import noobAvatar from '../../../assets/imgs/noobAvatar.jpg';
 
 function Results({tournament}) {
   const [activePanel, setActivePanel] = useState(0);
@@ -28,7 +28,7 @@ function Results({tournament}) {
     return (
       <tr key={'playerScore-'+index}>
         <td>{index+1}</td>
-        <td><img className="avatar" src={player.player.avatar || noobAvatar} /></td>
+        <td><Avatar url={player.player.avatar || null} /></td>
         <td>{player.player.name}</td>
         <td>{player.kills}</td>
         <td>{player.points}</td>
@@ -56,7 +56,7 @@ function Results({tournament}) {
         <div className='result-slide v-layout justify-right'>
           {result.players.length > 0 && <div className='h-layout align-right' style={{minHeight: '400px'}}>
             {result.players.length > 1 && <div className='place second-place'>
-              <img className='avatar avatar--big' src={result.players[1].player.avatar || noobAvatar} />
+              <Avatar big url={result.players[1].player.avatar || null} />
               <div className='text-xl'>{result.players[1].player.name}</div>
               <div className='box v-layout'>
                 <h1 className='text-white m0'>2<span className='text-sm'>nd</span></h1>
@@ -68,7 +68,7 @@ function Results({tournament}) {
               </div>
             </div> }
             {result.players.length > 0 && <div className='place first-place ml mr'>
-              <img className='avatar avatar--big' src={result.players[0].player.avatar || noobAvatar} />
+              <Avatar big url={result.players[0].player.avatar || null} />
               <div className='text-xl'>{result.players[0].player.name}</div>
               <div className='box v-layout'>
                 <h1 className='text-white m0'>1<span className='text-sm'>st</span></h1>
@@ -80,7 +80,7 @@ function Results({tournament}) {
               </div>
             </div> }
             {result.players.length > 2 && <div className='place third-place'>
-              <img className='avatar avatar--big' src={result.players[2].player.avatar || noobAvatar} />
+              <Avatar big url={result.players[2].player.avatar || null} />
               <div className='text-xl'>{result.players[2].player.name}</div>
               <div className='box v-layout'>
                 <h1 className='text-white m0'>3<span className='text-sm'>rd</span></h1>

@@ -15,6 +15,11 @@ export default class TournamentService {
     const newTournamentRef = database.ref().child('t').push();
     tournament.id = newTournamentRef.key;
     newTournamentRef.set(tournament);
+    const updates = {}
+    toList(tournament.players).forEach((player) => {
+      updates[`ut/${player.id}/${tournament.id}`] = {name: tournament.name};
+    })
+    database.ref().update(updates);
   }
 
   update(id, tournament) {

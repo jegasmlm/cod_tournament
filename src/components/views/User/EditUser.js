@@ -3,6 +3,7 @@ import Services from '../../../services/Services';
 import noobAvatar from '../../../assets/imgs/noobAvatar.jpg';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { validate } from 'uuid';
+import Avatar from '../../elements/Avatar';
 
 function EditUser({onSave}) {
   const [avatar, setAvatar] = useState(Services.auth().loggedUser().photoURL);
@@ -13,12 +14,14 @@ function EditUser({onSave}) {
   const [gamerTag, setGamerTag] = useState('');
   const [avatarFile, setAvatarFile] = useState(null);
   const [valid, setValid] = useState(false);
+  const [isUpdate, setIsUpdate] = useState(false);
 
   const avatarInput = useRef(null);
 
   useEffect(() => {
     Services.users().readOnce(Services.auth().loggedUser().uid, (user) => {
       if(user){
+        setIsUpdate(true);
         setAvatar(user.avatar);
         setEmail(user.email);
         setName(user.name);
@@ -87,18 +90,33 @@ function EditUser({onSave}) {
   };
 
   const saveUserToFirebase = (avatar) => {
-    Services.users().save({
-      id: Services.auth().loggedUser().uid,
-      name: name,
-      email: email,
-      avatar: avatar,
-      codUsername: codUsername,
-      platform: platform,
-      gamerTag: gamerTag,
-    }, () => {
-      document.location = "#";
-      onSave();
-    });
+    if(isUpdate) {
+      Services.users().update(Services.auth().loggedUser().uid, {
+        id: Services.auth().loggedUser().uid,
+        name: name,
+        email: email,
+        avatar: avatar,
+        codUsername: codUsername,
+        platform: platform,
+        gamerTag: gamerTag,
+      }, () => {
+        document.location = "#";
+        onSave();
+      });
+    } else {
+      Services.users().save({
+        id: Services.auth().loggedUser().uid,
+        name: name,
+        email: email,
+        avatar: avatar,
+        codUsername: codUsername,
+        platform: platform,
+        gamerTag: gamerTag,
+      }, () => {
+        document.location = "#";
+        onSave();
+      });
+    }
   }
 
   return (
@@ -110,7 +128,7 @@ function EditUser({onSave}) {
         <div className="h-layout mt-2">
           <input ref={avatarInput} type='file' accept="image/png, image/jpeg"  hidden onChange={(e) => loadImage(e)}/>
           <div style={{cursor: 'pointer'}} className="avatar avatar--big relative" onClick={() => changeAvatar()}>
-            <img className="avatar avatar--big" src={avatar || noobAvatar}/>
+            <Avatar big url={avatar || null}/>
             <div style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: '128px', height: '128px', background: '#0004', borderRadius: '50%'}}></div>
             <label style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}><i className="fas fa-upload"></i></label>
           </div>

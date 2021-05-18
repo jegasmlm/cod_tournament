@@ -1,15 +1,15 @@
 import moment from 'moment';
 import Services from '../../../../../services/Services';
 import './TournamentCard.css';
-import noobAvatar from '../../../../../assets/imgs/noobAvatar.jpg'
 import { toList } from '../../../../../utils/Utils';
+import Avatar from '../../../../elements/Avatar';
 
 function TournamentCard({ tournament }) {
 
   const players = toList(tournament.players).map((player, index) => {
     return (
       <div className="v-layout mr mb" key={player.id || index}>
-        <img className="avatar" src={player.avatar || noobAvatar}/>
+        <Avatar url={player.avatar || null}/>
         <span className="text-xs">{player.name || player}</span>
       </div>
     );

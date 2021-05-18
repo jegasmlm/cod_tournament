@@ -9,7 +9,7 @@ import moment from 'moment';
 import RandomTeams from '../RandomTeams/RandomTeams';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { toList } from '../../../utils/Utils';
-import noobAvatar from '../../../assets/imgs/noobAvatar.jpg'
+import Avatar from '../../elements/Avatar';
 
 function Tournament(props) {
   const [modalIsOpen, setIsOpen] = useState([false]);
@@ -49,7 +49,7 @@ function Tournament(props) {
   const players = toList(tournament.players).map((player, index) => {
     return (
       <div className="v-layout mr" key={player.id || index}>
-        <img className="avatar" src={player.avatar || noobAvatar}/>
+        <Avatar url={player.avatar || null}/>
         <span>{player.name || player}</span>
       </div>
     )

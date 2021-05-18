@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import moment from 'moment';
 import Services from '../../../../../services/Services';
 import './MatchCard.css';
-import noobAvatar from '../../../../../assets/imgs/noobAvatar.jpg';
 import { toList } from '../../../../../utils/Utils';
+import Avatar from '../../../../elements/Avatar';
 
 function MatchCard({tournamentOpen, tournamentId, match, onDelete}) {
   const tournamentService = Services.tournaments();
@@ -20,7 +20,7 @@ function MatchCard({tournamentOpen, tournamentId, match, onDelete}) {
     const playerInfo = players.find((player) => player.id === score.player);
     return (
       <tr key={index}>
-        <td><img className="avatar" src={playerInfo && playerInfo.avatar || noobAvatar} /></td>
+        <td><Avatar url={playerInfo && playerInfo.avatar || null} /></td>
         <td>{playerInfo && playerInfo.name || score.player}</td>
         <td>{score.kills}</td>
         <td>{score.damage}</td>
