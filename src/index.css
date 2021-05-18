@@ -377,6 +377,10 @@ input:-webkit-autofill:active {
   justify-content: space-between;
 }
 
+.justify-sa {
+  justify-content: space-around;
+}
+
 .align-left {
   align-items: flex-start;
 }
