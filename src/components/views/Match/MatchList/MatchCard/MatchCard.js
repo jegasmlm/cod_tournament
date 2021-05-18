@@ -4,6 +4,7 @@ import Services from '../../../../../services/Services';
 import './MatchCard.css';
 import { toList } from '../../../../../utils/Utils';
 import Avatar from '../../../../elements/Avatar';
+import PlayerItem from '../../../../elements/PlayerItem';
 
 function MatchCard({tournamentOpen, tournamentId, match, onDelete}) {
   const tournamentService = Services.tournaments();
@@ -20,8 +21,7 @@ function MatchCard({tournamentOpen, tournamentId, match, onDelete}) {
     const playerInfo = players.find((player) => player.id === score.player);
     return (
       <tr key={index}>
-        <td><Avatar url={playerInfo && playerInfo.avatar || null} /></td>
-        <td>{playerInfo && playerInfo.name || score.player}</td>
+        <td><PlayerItem size="sm" horizontal player={playerInfo} /></td>
         <td>{score.kills}</td>
         <td>{score.damage}</td>
       </tr>
@@ -47,7 +47,6 @@ function MatchCard({tournamentOpen, tournamentId, match, onDelete}) {
         <table className='mt'>
           <thead>
             <tr>
-              <th></th>
               <th style={{width: '100%'}}>Player</th>
               <th>Kills</th>
               <th>Dmg</th>

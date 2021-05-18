@@ -26,6 +26,7 @@ code {
   --button-bg-color: #1818;
   --button-disabled-color: #1118;
   --accent-color: #2f2c;
+  --secondary-color: #ea6;
   --dark-color: #181c;
   --text-color: #fffe;
   --text-hint-color: #fff4;
@@ -273,6 +274,10 @@ input:-webkit-autofill:active {
   opacity: 0.4;
 }
 
+.p0 {
+  padding: 0;
+}
+
 .m0 {
   margin: 0;
 }
@@ -361,6 +366,10 @@ input:-webkit-autofill:active {
   flex-grow: 1;
 }
 
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
 .justify-left {
   justify-content: flex-start;
 }
@@ -411,6 +420,10 @@ input:-webkit-autofill:active {
 
 .text-accent {
   color: var(--accent-color);
+}
+
+.text-secondary {
+  color: var(--secondary-color);
 }
 
 .text-hint {

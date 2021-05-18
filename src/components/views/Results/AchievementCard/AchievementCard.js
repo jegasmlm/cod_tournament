@@ -1,4 +1,5 @@
 import Avatar from '../../../elements/Avatar';
+import PlayerItem from '../../../elements/PlayerItem';
 import './AchievementCard.css';
 
 function AchievementCard({achievement}) {
@@ -7,11 +8,8 @@ function AchievementCard({achievement}) {
     <div className='card v-layout'>
       <div><i className={'fa-2x fas fa-'+achievement.icon} style={{color: achievement.iconColor}}></i></div>
       <h3 className='text-sm text-accent mt'>{achievement.name}</h3>
-      <div className="h-layout mb">
-        <Avatar url={achievement.player.avatar || null} />
-        <div className='text-lg'>{achievement.player.name}</div>
-      </div>
-      <div><span className='text-sm text-accent'>{achievement.attr}: </span>{achievement.value}</div>
+      <PlayerItem horizontal player={achievement.player} />
+      <div className="mt"><span className='text-sm text-accent'>{achievement.attr}: </span>{achievement.value}</div>
       <div className='mt text-sm text-hint'>({achievement.description})</div>
     </div>
   );

@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import Services from '../../../services/Services';
 import Avatar from '../../elements/Avatar';
+import PlayerItem from '../../elements/PlayerItem';
 import AchievementList from './AchievementList/AchievementList';
+import Position from './Position';
 import './Results.css';
 
 function Results({tournament}) {
@@ -28,8 +30,7 @@ function Results({tournament}) {
     return (
       <tr key={'playerScore-'+index}>
         <td>{index+1}</td>
-        <td><Avatar url={player.player.avatar || null} /></td>
-        <td>{player.player.name}</td>
+        <td><PlayerItem horizontal player={player.player} /></td>
         <td>{player.kills}</td>
         <td>{player.points}</td>
         <td>{parseInt(player.kills) + parseInt(player.points)}</td>
@@ -55,42 +56,10 @@ function Results({tournament}) {
       <div id='result-slider' className='result-slider'>
         <div className='result-slide v-layout justify-right'>
           {result.players.length > 0 && <div className='h-layout align-right' style={{minHeight: '400px'}}>
-            {result.players.length > 1 && <div className='place second-place'>
-              <Avatar big url={result.players[1].player.avatar || null} />
-              <div className='text-xl'>{result.players[1].player.name}</div>
-              <div className='box v-layout'>
-                <h1 className='text-white m0'>2<span className='text-sm'>nd</span></h1>
-                <span className='text-sm mt'>{parseInt(result.players[1].kills) + parseInt(result.players[1].points)} Pts</span>
-              </div>
-              <div className='v-layout text-sm mt'>
-                <span>Kills: {result.players[1].kills}</span>
-                <span>Match Pts: {result.players[1].points}</span>
-              </div>
-            </div> }
-            {result.players.length > 0 && <div className='place first-place ml mr'>
-              <Avatar big url={result.players[0].player.avatar || null} />
-              <div className='text-xl'>{result.players[0].player.name}</div>
-              <div className='box v-layout'>
-                <h1 className='text-white m0'>1<span className='text-sm'>st</span></h1>
-                <span className='text-sm mt'>{parseInt(result.players[0].kills) + parseInt(result.players[0].points)} Pts</span>
-              </div>
-              <div className='v-layout text-sm mt'>
-                <span>Kills: {result.players[0].kills}</span>
-                <span>Match Pts: {result.players[0].points}</span>
-              </div>
-            </div> }
-            {result.players.length > 2 && <div className='place third-place'>
-              <Avatar big url={result.players[2].player.avatar || null} />
-              <div className='text-xl'>{result.players[2].player.name}</div>
-              <div className='box v-layout'>
-                <h1 className='text-white m0'>3<span className='text-sm'>rd</span></h1>
-                <span className='text-sm mt'>{parseInt(result.players[2].kills) + parseInt(result.players[2].points)} Pts</span>
-              </div>
-              <div className='v-layout text-sm mt'>
-                <span>Kills: {result.players[2].kills}</span>
-                <span>Match Pts: {result.players[2].points}</span>
-              </div>
-            </div> }
+            {result.players.length > 1 && <Position playerScore={result.players[1]} place={2} /> }
+            {result.players.length > 0 && <Position playerScore={result.players[0]} place={1} /> }
+            {result.players.length > 2 && <Position playerScore={result.players[2]} place={3} />
+            }
           </div> }
         </div>
         <div className='result-slide v-layout'>
@@ -100,7 +69,6 @@ function Results({tournament}) {
               <thead>
                 <tr>
                   <th>#</th>
-                  <th></th>
                   <th>Player</th>
                   <th>Kills</th>
                   <th>Pts</th>
