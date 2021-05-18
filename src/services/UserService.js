@@ -30,7 +30,10 @@ export default class UserService {
 
   read(id, callback) {
     database.ref(`users/${id}`).on('value', (snapshot) => {
-      callback(snapshot.val());
+      const user = snapshot.val();
+      if(callback) {
+        callback(user);
+      }
     });
   }
 
