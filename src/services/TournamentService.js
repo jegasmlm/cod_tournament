@@ -40,7 +40,7 @@ export default class TournamentService {
   read(callback, id) {
     database.ref(`t/${id}`).on('value', (snapshot) => {
       const tournament = snapshot.val();
-      if(tournament){
+      if(tournament && tournament.teams){
         Object.keys(tournament.teams).forEach((key) => {
           const fullPlayers = [];
           tournament.teams[key].players.forEach((teamPlayer) => {
