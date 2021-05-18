@@ -6,17 +6,18 @@ import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import React from "react";
 import ReactDOM from "react-dom"
 import paypal from 'paypal-checkout';
+import { toList } from '../../../../utils/Utils';
 
 const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
 function TournamentForm({onSave}) {
   const [users, setUsers] = useState([]);
   const [playerSearch, setPlayerSearch] = useState('');
-  const [searchedPlayers, setSearchedPlayers] = useState([]);
+  const [searchedPlayers, setSearchedPlayers] = useState({});
   const [validForm, setValidForm] = useState(false);
   const [name, setName] = useState('');
   const [teamSize, setTeamSize] = useState(4);
-  const [players, setPlayers] = useState([]);
+  const [players, setPlayers] = useState({});
 
   useEffect(() => {
     Services.users().list((users) => {
@@ -29,7 +30,7 @@ function TournamentForm({onSave}) {
   }, [name, teamSize, players]);
 
   const validate = () => {
-    setValidForm(name !== '' && teamSize !== '' && players.length >= teamSize);
+    setValidForm(name !== '' && teamSize !== '' && toList(players).length >= teamSize);
   }
  
   const addPlayer = () => {
@@ -37,7 +38,7 @@ function TournamentForm({onSave}) {
   };
  
   const setPlayerName = (index, name) => {
-    const copy = [...players];
+    const copy = {...players};
     copy[index].name = name
     setPlayers(copy);
   };
@@ -57,48 +58,53 @@ function TournamentForm({onSave}) {
   };
 
   const deletePlayer = (index) => {
-    const playersCopy = [...players];
-    playersCopy.splice(index, 1);
+    const playersCopy = {...players};
+    delete playersCopy[index];
     setPlayers(playersCopy);
   } 
 
   const searchPlayer = (value) => {
     setPlayerSearch(value)
     if(value !== ''){
-      setSearchedPlayers(users.filter((user) => (
+      const filteredUsers = users.filter((user) => (
         user.name.toLowerCase().includes(value.toLowerCase()) || 
         user.gamerTag.toLowerCase().includes(value.toLowerCase()) || 
         user.email.includes(value.toLowerCase())) && 
-        (players.map((player) => player.id).indexOf(user.id) === -1) )
-      );
+        (toList(players).map((player) => player.id).indexOf(user.id) === -1) );
+      const searchObject = {}
+      filteredUsers.forEach((user) => {
+        searchObject[user.id] = user;
+      })
+      setSearchedPlayers(searchObject);
     } else {
-      setSearchedPlayers([]);
+      setSearchedPlayers({});
     }
   };
 
   const onSearchedPlayerClick = (index) => {
-    const playersCopy = [...players];
-    playersCopy.push(searchedPlayers[index]);
+    const playersCopy = {...players};
+    playersCopy[index] = searchedPlayers[index];
     searchPlayer('');
+    console.log(playersCopy);
     setPlayers(playersCopy);
   }
 
-  const Tournamentplayers = players.map((player, index) => {
+  const Tournamentplayers = toList(players).map((player) => {
     return (
       <CSSTransition key={player.id} timeout={400} classNames='input-list-item'>
         <div className="mb h-layout justify-stretch">
-          <input disabled className='flex-grow' id={'playerNameInput'+index} type='text' value={player.name}  placeholder='Player Name' onChange={(e) => setPlayerName(index, e.target.value)}/>
-          <button className='btn--secondary text-accent' onClick={() => deletePlayer(index)}><i className='fa fa-minus'></i></button>
+          <input disabled className='flex-grow' id={'playerNameInput'+player.id} type='text' value={player.name}  placeholder='Player Name' onChange={(e) => setPlayerName(player.id, e.target.value)}/>
+          <button className='btn--secondary text-accent' onClick={() => deletePlayer(player.id)}><i className='fa fa-minus'></i></button>
         </div>
       </CSSTransition>
     )
   });
 
-  const searchedPlayerList = searchedPlayers.map((player, index) => {
+  const searchedPlayerList = toList(searchedPlayers).map((player) => {
     return (
       <div className="btn btn--secondary btn--sm h-layout" style={{marginRight: 4, marginTop: 4}}>
         <img className="avatar" src={player.avatar}/>
-        <span class="text-sm" style={{marginLeft: 4}} onClick={() => onSearchedPlayerClick(index)}>{player.name}</span>
+        <span class="text-sm" style={{marginLeft: 4}} onClick={() => onSearchedPlayerClick(player.id)}>{player.name}</span>
       </div>
     );
   });
@@ -136,7 +142,7 @@ function TournamentForm({onSave}) {
           <h3 className='flex-grow'>Add Players</h3>
         </div>
         <input className="mb" type='text' value={playerSearch} onChange={(e) => searchPlayer(e.target.value)} placeholder="Search player ..."/>
-        { searchedPlayers.length > 0 && (
+        { toList(searchedPlayers).length > 0 && (
           <div className="h-layout justify-left card float-menu searched-players">
             {searchedPlayerList}
           </div>

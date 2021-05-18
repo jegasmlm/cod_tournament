@@ -1,15 +1,17 @@
 import moment from 'moment';
 import Services from '../../../../../services/Services';
 import './TournamentCard.css';
+import noobAvatar from '../../../../../assets/imgs/noobAvatar.jpg'
+import { toList } from '../../../../../utils/Utils';
 
 function TournamentCard({ tournament }) {
 
-  const players = tournament.players.map((player, index) => {
+  const players = toList(tournament.players).map((player, index) => {
     return (
-      <>
-        { player.avatar && <img className="avatar mr" src={player.avatar}/>}
-        { !player.avatar && <span className='mr-3 text-sm' key={player.id || player}>{player.name || player}</span> }
-      </>
+      <div className="v-layout mr mb" key={player.id || index}>
+        <img className="avatar" src={player.avatar || noobAvatar}/>
+        <span className="text-xs">{player.name || player}</span>
+      </div>
     );
   });
 

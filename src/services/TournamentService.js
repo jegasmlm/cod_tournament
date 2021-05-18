@@ -44,7 +44,7 @@ export default class TournamentService {
         Object.keys(tournament.teams).forEach((key) => {
           const fullPlayers = [];
           tournament.teams[key].players.forEach((teamPlayer) => {
-            fullPlayers.push(tournament.players.find(player => player.id === teamPlayer));
+            fullPlayers.push(toList(tournament.players).find(player => player.id === teamPlayer));
           });
           tournament.teams[key].players = fullPlayers;
         });
@@ -155,7 +155,7 @@ export default class TournamentService {
   }
 
   getResults(tournament) {
-    const players = [...tournament.players];
+    const players = toList({...tournament.players});
     const playersResultObject = {};
     players.forEach((player) => {
       if(!playersResultObject[player.id]){

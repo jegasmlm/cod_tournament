@@ -3,6 +3,7 @@ import moment from 'moment';
 import Services from '../../../../../services/Services';
 import './MatchCard.css';
 import noobAvatar from '../../../../../assets/imgs/noobAvatar.jpg';
+import { toList } from '../../../../../utils/Utils';
 
 function MatchCard({tournamentOpen, tournamentId, match, onDelete}) {
   const tournamentService = Services.tournaments();
@@ -11,7 +12,7 @@ function MatchCard({tournamentOpen, tournamentId, match, onDelete}) {
 
   useEffect(() =>{
     Services.tournaments().listPlayers(players => {
-      setPlayers(players);
+      setPlayers(toList(players));
     } , tournamentId);
   }, []);
 

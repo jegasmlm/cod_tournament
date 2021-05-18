@@ -8,6 +8,8 @@ import TeamForm from '../Team/TeamForm/TeamForm';
 import moment from 'moment';
 import RandomTeams from '../RandomTeams/RandomTeams';
 import NavigationBar from '../NavigationBar/NavigationBar';
+import { toList } from '../../../utils/Utils';
+import noobAvatar from '../../../assets/imgs/noobAvatar.jpg'
 
 function Tournament(props) {
   const [modalIsOpen, setIsOpen] = useState([false]);
@@ -44,9 +46,12 @@ function Tournament(props) {
     Services.tournaments().close(tournament.id);
   }
 
-  const players = tournament.players.map((player, index) => {
+  const players = toList(tournament.players).map((player, index) => {
     return (
-      <span className='mr' key={player.id || index}>{player.name || player}</span>
+      <div className="v-layout mr" key={player.id || index}>
+        <img className="avatar" src={player.avatar || noobAvatar}/>
+        <span>{player.name || player}</span>
+      </div>
     )
   })
 
@@ -73,7 +78,7 @@ function Tournament(props) {
           onRequestClose={() => setIsOpen([false])}
           size='sm'
         >
-        <TeamForm tournamentId={tournament.id} players={tournament.players} teamSize={tournament.teamSize} onSave={onSaveTeam} />
+        <TeamForm tournamentId={tournament.id} players={toList(tournament.players)} teamSize={tournament.teamSize} onSave={onSaveTeam} />
       </Modal>
       
       <Modal
@@ -81,7 +86,7 @@ function Tournament(props) {
           onRequestClose={() => setRandomTeamsIsOpen([false])}
           size='sm'
         >
-        <RandomTeams tournamentId={tournament.id} teamSize={tournament.teamSize} players={tournament.players} onSave={onSaveRandomTeams} />
+        <RandomTeams tournamentId={tournament.id} teamSize={tournament.teamSize} players={toList(tournament.players)} onSave={onSaveRandomTeams} />
       </Modal>
     </div>
   );

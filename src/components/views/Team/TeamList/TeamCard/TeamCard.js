@@ -4,6 +4,7 @@ import { Modal } from '../../../../elements/Modal';
 import MatchForm from '../../../Match/MatchForm/MatchForm';
 import MatchList from '../../../Match/MatchList/MatchList';
 import './TeamCard.css';
+import noobAvatar from '../../../../../assets/imgs/noobAvatar.jpg';
 
 function TeamCard({ tournamentOpen, team}) {
   const [modalIsOpen, setIsOpen] = useState([false]);
@@ -23,10 +24,10 @@ function TeamCard({ tournamentOpen, team}) {
 
   const players = team.players.filter(player => player).map((player, index) => {
     return (
-      <>
-        { player.avatar && <img className="avatar mr" src={player.avatar} key={player.id || index}/>}
-        { !player.avatar && <span className='mr text-sm' key={player.id || index}>{player.name || player}</span> }
-      </>
+      <div className="v-layout mr mb" key={player.id || index}>
+        <img className="avatar" src={player.avatar || noobAvatar}/>
+        <span className="text-xs">{player.name || player}</span>
+      </div>
     );
   });
 
