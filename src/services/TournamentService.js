@@ -178,14 +178,14 @@ export default class TournamentService {
           Object.keys(team.matches).forEach((matchKey) => {
             const match = team.matches[matchKey];
             if(team.players.indexOf(player) > -1){
-              playersResultObject[player.id]['points'] += this.getPositionPoint(match.position);
-              playersResultObject[player.id]['total'] += this.getPositionPoint(match.position);
+              playersResultObject[player.id].points += this.getPositionPoint(match.position);
+              playersResultObject[player.id].total += this.getPositionPoint(match.position);
             }
             match.teamScore.forEach((score) => {
-              if(player.id === score.player.id) {
-                playersResultObject[player.id]['kills'] += parseInt(score.kills);
-                playersResultObject[player.id]['damage'] += parseInt(score.damage);
-                playersResultObject[player.id]['total'] += parseInt(score.kills);
+              if(player.id === score.player) {
+                playersResultObject[player.id].kills += parseInt(score.kills);
+                playersResultObject[player.id].damage += parseInt(score.damage);
+                playersResultObject[player.id].total += parseInt(score.kills);
               }
             })
           })
