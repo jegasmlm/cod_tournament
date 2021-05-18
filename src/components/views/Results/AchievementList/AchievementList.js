@@ -1,6 +1,12 @@
 import _ from 'lodash';
 import AchievementCard from '../AchievementCard/AchievementCard';
 import './AchievementList.css';
+import bloodSpatter from '../../../../assets/imgs/bloodSpatter.png'
+import bloodyKnife from '../../../../assets/imgs/bloodyKnife.png'
+import toolbox from '../../../../assets/imgs/toolbox.png'
+import bird from '../../../../assets/imgs/bird.png'
+import tiredSoldier from '../../../../assets/imgs/tiredSoldier.png'
+import heavyLoad from '../../../../assets/imgs/heavyLoad.png'
 
 function AchievementList({result}) {
   const achievements = [];
@@ -18,7 +24,7 @@ function AchievementList({result}) {
       attr: 'Kills',
       value: highKill.kills,
       description: 'Highest Kills',
-      icon: 'crosshairs',
+      icon: bloodSpatter,
       iconColor: 'yellow'
     });
     achievements.push({
@@ -27,7 +33,7 @@ function AchievementList({result}) {
       attr: 'Damage',
       value: highDamage.damage,
       description: 'Highest Damage',
-      icon: 'tint',
+      icon: bloodyKnife,
       iconColor: 'red'
     });
     achievements.push({
@@ -36,7 +42,7 @@ function AchievementList({result}) {
       attr: 'Match Pts',
       value: highMatchPts.points,
       description: 'Highest Points',
-      icon: 'toolbox',
+      icon: toolbox,
       iconColor: 'aqua'
     });
     achievements.push({
@@ -45,7 +51,7 @@ function AchievementList({result}) {
       attr: 'Kills',
       value: lowKill.kills,
       description: 'Lowest Kills',
-      icon: 'dove',
+      icon: bird,
       iconColor: 'aliceblue'
     });
     achievements.push({
@@ -54,7 +60,7 @@ function AchievementList({result}) {
       attr: 'Damage',
       value: minDamage.damage,
       description: 'Lowest Damage',
-      icon: 'bed',
+      icon: tiredSoldier,
       iconColor: 'gray'
     });
     achievements.push({
@@ -63,7 +69,7 @@ function AchievementList({result}) {
       attr: 'Match Pts',
       value: lowMatchPts.points,
       description: 'Lowest Points',
-      icon: 'weight-hanging',
+      icon: heavyLoad,
       iconColor: 'purple'
     });
   }

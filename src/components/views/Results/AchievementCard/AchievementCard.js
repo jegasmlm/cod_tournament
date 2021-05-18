@@ -6,7 +6,7 @@ function AchievementCard({achievement}) {
   
   return (
     <div className='card v-layout'>
-      <div><i className={'fa-2x fas fa-'+achievement.icon} style={{color: achievement.iconColor}}></i></div>
+      <div><img width={72} src={achievement.icon}/></div>
       <h3 className='text-sm text-accent mt'>{achievement.name}</h3>
       <PlayerItem horizontal player={achievement.player} />
       <div className="mt"><span className='text-sm text-accent'>{achievement.attr}: </span>{achievement.value}</div>
