@@ -95,7 +95,12 @@ function TournamentForm({onSave}) {
   });
 
   const searchedPlayerList = searchedPlayers.map((player, index) => {
-    return <span class="btn btn--sm text-sm" style={{marginRight: 4, marginTop: 4}} onClick={() => onSearchedPlayerClick(index)}>{player.name}</span>;
+    return (
+      <div className="btn btn--secondary btn--sm h-layout" style={{marginRight: 4, marginTop: 4}}>
+        <img className="avatar" src={player.avatar}/>
+        <span class="text-sm" style={{marginLeft: 4}} onClick={() => onSearchedPlayerClick(index)}>{player.name}</span>
+      </div>
+    );
   });
   
   const createOrder = (data, actions) =>{
