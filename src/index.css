@@ -74,6 +74,10 @@ code {
   border-radius: var(--border-smooth);
 }
 
+.card--sm {
+  padding: 0.4rem;
+}
+
 .card:hover {
   box-shadow: inset 0px 0px 40px #2f25;
   transform: scale(1.02);
@@ -170,6 +174,12 @@ button, .btn, .btn:focus, button:focus {
   cursor: pointer;
   border-radius: var(--border-smooth);
   transition: background-color 400ms ease-in-out;
+}
+
+.btn--sm {
+  padding: 0.25rem 0.5rem;
+  text-transform: initial;
+  letter-spacing: 0.1rem;
 }
 
 button:disabled, .btn:disabled {
@@ -309,9 +319,23 @@ input:-webkit-autofill:active {
   margin-right: 1.5rem;
 }
 
-
 .mr-3 {
   margin-right: 2rem;
+}
+
+.mh {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.mh {
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+.mh {
+  margin-right: 1rem;
+  margin-left: 1rem;
 }
 
 .v-layout {
@@ -390,6 +414,22 @@ input:-webkit-autofill:active {
 
 table th {
   font-family: 'Audiowide', 'Roboto', sans-serif;
+}
+
+.relative {
+  position: relative;
+}
+
+.z1 {
+  z-index: 1;
+}
+
+.z2 {
+  z-index: 2;
+}
+
+.z3 {
+  z-index: 4;
 }
 
 @media screen and (max-width: 426px) {

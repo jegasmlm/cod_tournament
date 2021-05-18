@@ -15,7 +15,7 @@ export const Modal = (props) => {
     inset: 'auto',
     minWith: '99vw',
     maxHeight: '80vh',
-    overflow: 'auto',
+    overflow: 'visible',
     width: (props.size === 'lg' ? '90%' : props.size === 'md' ? '60%' : 'auto'),
     padding: '0',
     backgroundColor: '#111e',

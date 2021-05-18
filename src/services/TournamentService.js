@@ -39,14 +39,25 @@ export default class TournamentService {
 
   read(callback, id) {
     database.ref(`t/${id}`).on('value', (snapshot) => {
-      callback(snapshot.val());
+      const tournament = snapshot.val();
+      if(tournament){
+        Object.keys(tournament.teams).forEach((key) => {
+          const fullPlayers = [];
+          tournament.teams[key].players.forEach((teamPlayer) => {
+            fullPlayers.push(tournament.players.find(player => player.id === teamPlayer));
+          });
+          tournament.teams[key].players = fullPlayers;
+        });
+      }
+      callback(tournament);
     });
   }
 
   saveTeam(tournamentId, team) {
+    const cleanTeam = {...team, players: team.players.map(player => player.id)}
     const newTeamtRef = database.ref().child(`t/${tournamentId}/teams/`).push();
-    team.id = newTeamtRef.key;
-    newTeamtRef.set(team);
+    cleanTeam.id = newTeamtRef.key;
+    newTeamtRef.set(cleanTeam);
   }
 
   deleteTeam(tournamentId, teamId) {
@@ -54,9 +65,11 @@ export default class TournamentService {
   }
 
   listTeams(callback, tournamentId) {
-    database.ref(`t/${tournamentId}/teams`).on('value', (snapshot) => {
-      callback(toList(snapshot.val()));
-    });
+    this.read((tournament) => {
+      if(tournament){
+        callback(toList(tournament.teams));
+      }
+    }, tournamentId);
   }
 
   getTeam(callback, tournamentId, id) {
@@ -139,9 +152,9 @@ export default class TournamentService {
     const players = [...tournament.players];
     const playersResultObject = {};
     players.forEach((player) => {
-      if(!playersResultObject[player]){
-        playersResultObject[player] = {
-          player: player,
+      if(!playersResultObject[player.id]){
+        playersResultObject[player.id] = {
+          player: player.name,
           kills: 0,
           damage: 0,
           points: 0,
@@ -154,14 +167,14 @@ export default class TournamentService {
           Object.keys(team.matches).forEach((matchKey) => {
             const match = team.matches[matchKey];
             if(team.players.indexOf(player) > -1){
-              playersResultObject[player]['points'] += this.getPositionPoint(match.position);
-              playersResultObject[player]['total'] += this.getPositionPoint(match.position);
+              playersResultObject[player.id]['points'] += this.getPositionPoint(match.position);
+              playersResultObject[player.id]['total'] += this.getPositionPoint(match.position);
             }
             match.teamScore.forEach((score) => {
-              if(player === score.player) {
-                playersResultObject[player]['kills'] += parseInt(score.kills);
-                playersResultObject[player]['damage'] += parseInt(score.damage);
-                playersResultObject[player]['total'] += parseInt(score.kills);
+              if(player.id === score.player.id) {
+                playersResultObject[player.id]['kills'] += parseInt(score.kills);
+                playersResultObject[player.id]['damage'] += parseInt(score.damage);
+                playersResultObject[player.id]['total'] += parseInt(score.kills);
               }
             })
           })

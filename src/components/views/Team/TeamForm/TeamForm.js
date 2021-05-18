@@ -23,7 +23,7 @@ function TeamForm({tournamentId, players, teamSize, onSave}) {
   useEffect(() => {
     players.forEach((player, index) => {
       if(team.indexOf(index) === -1){
-        document.getElementById(player+'_checkbox').checked = false
+        document.getElementById((player.id || player)+'_checkbox').checked = false
       }
     });
     validate();
@@ -50,8 +50,8 @@ function TeamForm({tournamentId, players, teamSize, onSave}) {
   const playerCheckboxes = players.map((player, index) => {
     return (
       <div key={index} className="h-layout mt">
-        <label htmlFor={player+'_checkbox'} className='flex-grow'>{player}</label>
-        <input type='checkbox' id={player+'_checkbox'} checked={team.indexOf(index) > -1} onChange={(e) => select(index, e.target.checked)}/>
+        <label htmlFor={(player.id || player)+'_checkbox'} className='flex-grow'>{player.name || player}</label>
+        <input type='checkbox' id={(player.id || player)+'_checkbox'} checked={team.indexOf(index) > -1} onChange={(e) => select(index, e.target.checked)}/>
       </div>
     )
   });

@@ -27,6 +27,7 @@ function Tournament(props) {
 
   const loadTournament = () => {
     Services.tournaments().read((tournament) => {
+      console.log(tournament);
       setTournament(tournament);
     }, props.match.params.id)
   }
@@ -45,7 +46,7 @@ function Tournament(props) {
 
   const players = tournament.players.map((player, index) => {
     return (
-      <span className='mr' key={index}>{player}</span>
+      <span className='mr' key={player.id || index}>{player.name || player}</span>
     )
   })
 

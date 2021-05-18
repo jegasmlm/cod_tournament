@@ -10,7 +10,7 @@ function MatchCard({tournamentOpen, match, onDelete}) {
   const playerScore = match.teamScore.map((score, index) => {
     return (
       <tr key={index}>
-        <td>{score.player}</td>
+        <td>{score.player.name || score.player}</td>
         <td>{score.kills}</td>
         <td>{score.damage}</td>
       </tr>

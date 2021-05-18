@@ -7,6 +7,7 @@ import './TeamCard.css';
 
 function TeamCard({ tournamentOpen, team}) {
   const [modalIsOpen, setIsOpen] = useState([false]);
+  console.log(team);
  
   const onDeleteMatch = (e, match) => {
     e.stopPropagation();
@@ -21,7 +22,7 @@ function TeamCard({ tournamentOpen, team}) {
     setIsOpen([false]);
   };
 
-  const players = team.players.map((player, index) => <span className='mr text-sm' key={index}>{player}</span>)
+  const players = team.players.map((player, index) => <span className='mr text-sm' key={player.id || index}>{player.name || player}</span>)
 
   return (
     <div className='card v-layout align-stretch'>

@@ -64,7 +64,7 @@ function RandomTeams({tournamentId, teamSize, players, onSave}) {
   }
 
   const teams = randomTeams.map((team, index) => {
-    const players = team.players.map((player) => <span className='mr' key={player}>{player}</span>)
+    const players = team.players.map((player) => <span className='mr' key={player.id || player}>{player.name || player}</span>)
     return (
       <div className='mb-3' key={index}>
         <h3>{team.name}</h3>

@@ -35,13 +35,15 @@ function MatchForm({team, onSave}) {
         setLoadginMatch(false);
         const matchCopy = {...match};
         match.teamScore.forEach((playerScore, index) => {
-          codMatch.data.allPlayers.forEach((codPlayer) => {
-            if(codPlayer.player.username.toLowerCase().includes(playerScore.player.toLowerCase())) {
-              matchCopy.teamScore[index].kills = codPlayer.playerStats.kills;
-              matchCopy.teamScore[index].damage = codPlayer.playerStats.damageDone;
-              matchCopy.position = codPlayer.playerStats.teamPlacement;
-            }
-          });
+          if(playerScore.player.codUsername){
+            codMatch.data.allPlayers.forEach((codPlayer) => {
+              if(codPlayer.player.username.toLowerCase().includes(playerScore.player.codUsername.toLowerCase())) {
+                matchCopy.teamScore[index].kills = codPlayer.playerStats.kills;
+                matchCopy.teamScore[index].damage = codPlayer.playerStats.damageDone;
+                matchCopy.position = codPlayer.playerStats.teamPlacement;
+              }
+            });
+          }
         });
         matchCopy.codId = matchId;
         setMatch(matchCopy);
@@ -88,9 +90,9 @@ function MatchForm({team, onSave}) {
   const teamScore = match.teamScore.map((score, index) => {
     return (
       <div key={index} className="form-group match-player-form">
-        <label className='flex-grow mr'>{score.player}</label>
+        <label className='flex-grow mr'>{score.player.name || score.player}</label>
         <input id={'playerNameInput'+index} type='number' value={score.kills}  placeholder='Kills' onChange={(e) => setPlayerKills(index, e.target.value)} autoComplete="off"  min="1" max="100"/>
-        <input id={'playerNameInput'+index} type='number' value={score.damage}  placeholder='Dmg' onChange={(e) => setPlayerDamage(index, e.target.value)} autoComplete="off"  min="1" max="100000"/>
+        <input className="ml" id={'playerNameInput'+index} type='number' value={score.damage}  placeholder='Dmg' onChange={(e) => setPlayerDamage(index, e.target.value)} autoComplete="off"  min="1" max="100000"/>
       </div>
     )
   });
@@ -100,7 +102,7 @@ function MatchForm({team, onSave}) {
       <div>
         <div className="form-group h-layout">
           <label className='flex-grow' htmlFor='matchPositionInput'>Match Id</label>
-          <input className="ml" id='matchIdInput' type='text' value={matchId} onChange={(e) => setMatchId(e.target.value)} />
+          <input className="ml mr" id='matchIdInput' type='text' value={matchId} onChange={(e) => setMatchId(e.target.value)} />
           <button onClick={() => loadMatch()}>Load</button>
         </div>
         <div className="form-group h-layout">
