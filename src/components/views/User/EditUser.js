@@ -6,6 +6,7 @@ function EditUser({onSave}) {
   const [avatar, setAvatar] = useState(Services.auth().loggedUser().photoURL);
   const [email, setEmail] = useState(Services.auth().loggedUser().email);
   const [name, setName] = useState(Services.auth().loggedUser().displayName);
+  const [codUsername, setCodUsername] = useState('');
   const [platform, setPlatform] = useState('battlenet');
   const [gamerTag, setGamerTag] = useState('');
   const [avatarFile, setAvatarFile] = useState(null);
@@ -31,8 +32,13 @@ function EditUser({onSave}) {
     }
   }
 
+  const onCodUsernameChanged = (value) => {
+    setValid(value && value !== '' && gamerTag !== '');
+    setCodUsername(value);
+  };
+
   const onGamerTagChanged = (value) => {
-    setValid(value && value !== '');
+    setValid(value && value !== '' && codUsername !== '');
     setGamerTag(value);
   };
 
@@ -59,6 +65,7 @@ function EditUser({onSave}) {
       name: name,
       email: email,
       avatar: avatar,
+      codUsername: codUsername,
       platform: platform,
       gamerTag: gamerTag,
     }, () => {
@@ -84,14 +91,18 @@ function EditUser({onSave}) {
         </div> 
         <div className="form-group mt">
           <label style={{minWidth: '30%'}}>Name</label>
-          <input className="flex-grow ml" value={name} onChange={(e) => setName(e.target.value)}/>
+          <input className="flex-grow ml" value={name} onChange={(e) => setName(e.target.value)} placeholder="Tournament username ..."/>
+        </div> 
+        <div className="form-group mt">
+          <label style={{minWidth: '30%'}}>Call of duty<br/>username</label>
+          <input className="flex-grow ml" value={codUsername} onChange={(e) => onCodUsernameChanged(e.target.value)} placeholder="Your call of duty username ..."/>
         </div> 
         <div className="form-group mt">
           <select  style={{minWidth: '30%'}} value={platform} onChange={(e) => setPlatform(e.target.value)}>
             <option className="select-option" value="battlenet">BattleNet</option>
             <option className="select-option" value="activision">Activision</option>
           </select>
-          <input className="flex-grow ml" placeholder="Gamer tag ..." value={gamerTag} onChange={(e) => onGamerTagChanged(e.target.value)}/>
+          <input className="flex-grow ml" placeholder={platform === 'battlenet' ? 'Battle tag ...' : 'Actividion Id ...'} value={gamerTag} onChange={(e) => onGamerTagChanged(e.target.value)}/>
         </div> 
         <button className="mt" onClick={() => saveUser()} disabled={!valid}>Save</button>
       </div>
