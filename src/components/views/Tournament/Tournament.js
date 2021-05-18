@@ -27,7 +27,6 @@ function Tournament(props) {
 
   const loadTournament = () => {
     Services.tournaments().read((tournament) => {
-      console.log(tournament);
       setTournament(tournament);
     }, props.match.params.id)
   }

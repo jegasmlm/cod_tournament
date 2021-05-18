@@ -7,7 +7,6 @@ import './TeamCard.css';
 
 function TeamCard({ tournamentOpen, team}) {
   const [modalIsOpen, setIsOpen] = useState([false]);
-  console.log(team);
  
   const onDeleteMatch = (e, match) => {
     e.stopPropagation();

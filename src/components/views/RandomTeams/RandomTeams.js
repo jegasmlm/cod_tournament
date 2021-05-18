@@ -48,7 +48,6 @@ function RandomTeams({tournamentId, teamSize, players, onSave}) {
           matches: []
         })
     }
-    console.log(randomTeams)
     
     setRandomTeams(randomTeams);
   }
