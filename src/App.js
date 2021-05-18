@@ -12,7 +12,6 @@ import Tournament from './components/views/Tournament/Tournament';
 import Services from './services/Services';
 import Login from './components/views/Auth/Login/Login';
 import Signup from './components/views/Auth/Signup/Signup';
-import NavigationBar from './components/views/NavigationBar/NavigationBar';
 import EditUser from './components/views/User/EditUser';
 
 function App() {
