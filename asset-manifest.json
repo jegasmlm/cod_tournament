@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/cod_tournament/static/css/main.63024b38.chunk.css",
-    "main.js": "/cod_tournament/static/js/main.4525c4f8.chunk.js",
-    "main.js.map": "/cod_tournament/static/js/main.4525c4f8.chunk.js.map",
+    "main.js": "/cod_tournament/static/js/main.83dbb71c.chunk.js",
+    "main.js.map": "/cod_tournament/static/js/main.83dbb71c.chunk.js.map",
     "runtime-main.js": "/cod_tournament/static/js/runtime-main.c0969373.js",
     "runtime-main.js.map": "/cod_tournament/static/js/runtime-main.c0969373.js.map",
     "static/js/2.d0c2ff34.chunk.js": "/cod_tournament/static/js/2.d0c2ff34.chunk.js",
@@ -13,12 +13,18 @@
     "static/css/main.63024b38.chunk.css.map": "/cod_tournament/static/css/main.63024b38.chunk.css.map",
     "static/js/2.d0c2ff34.chunk.js.LICENSE.txt": "/cod_tournament/static/js/2.d0c2ff34.chunk.js.LICENSE.txt",
     "static/media/App.css": "/cod_tournament/static/media/bg3.cf674720.jpg",
-    "static/media/noobAvatar.72bfd947.jpg": "/cod_tournament/static/media/noobAvatar.72bfd947.jpg"
+    "static/media/bird.9a8bc9ee.png": "/cod_tournament/static/media/bird.9a8bc9ee.png",
+    "static/media/bloodSpatter.59422425.png": "/cod_tournament/static/media/bloodSpatter.59422425.png",
+    "static/media/bloodyKnife.1db5e642.png": "/cod_tournament/static/media/bloodyKnife.1db5e642.png",
+    "static/media/heavyLoad.73ee4516.png": "/cod_tournament/static/media/heavyLoad.73ee4516.png",
+    "static/media/noobAvatar.72bfd947.jpg": "/cod_tournament/static/media/noobAvatar.72bfd947.jpg",
+    "static/media/tiredSoldier.22b050e8.png": "/cod_tournament/static/media/tiredSoldier.22b050e8.png",
+    "static/media/toolbox.aa6ccd4a.png": "/cod_tournament/static/media/toolbox.aa6ccd4a.png"
   },
   "entrypoints": [
     "static/js/runtime-main.c0969373.js",
     "static/js/2.d0c2ff34.chunk.js",
     "static/css/main.63024b38.chunk.css",
-    "static/js/main.4525c4f8.chunk.js"
+    "static/js/main.83dbb71c.chunk.js"
   ]
 }
