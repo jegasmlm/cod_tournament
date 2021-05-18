@@ -118,6 +118,7 @@ function EditUser({onSave}) {
           <label style={{minWidth: '30%'}} className="mr">Call of duty<br/>username</label>
           <input className="flex-grow" value={codUsername} onChange={(e) => onCodUsernameChanged(e.target.value)} placeholder="Your call of duty username ..."/>
         </div> 
+        <div className="mb text-sm text-hint">The exact username you use in call of duty, so we can track your progress</div>
         <div className="form-group mt">
           <select  style={{minWidth: '30%'}} value={platform} onChange={(e) => setPlatform(e.target.value)}>
             <option className="select-option" value="battlenet">BattleNet</option>
