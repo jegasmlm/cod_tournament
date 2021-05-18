@@ -2,6 +2,7 @@ import moment from 'moment';
 import { useState } from 'react';
 import Services from '../../../../../services/Services';
 import './MatchCard.css';
+import noobAvatar from '../../../../../assets/imgs/noobAvatar.jpg';
 
 function MatchCard({tournamentOpen, match, onDelete}) {
   const tournamentService = Services.tournaments();
@@ -10,6 +11,7 @@ function MatchCard({tournamentOpen, match, onDelete}) {
   const playerScore = match.teamScore.map((score, index) => {
     return (
       <tr key={index}>
+        <td><img className="avatar" src={score.player.avatar || noobAvatar} /></td>
         <td>{score.player.name || score.player}</td>
         <td>{score.kills}</td>
         <td>{score.damage}</td>
@@ -24,7 +26,7 @@ function MatchCard({tournamentOpen, match, onDelete}) {
 
   return (
     <div id={match.id} className='match card' onClick={() => setOpen(!open)}>
-      <div className='h-layout text-sm'>
+      <div className='h-layout justify-sb text-sm'>
         <div><span className='text-accent text-bold'>Kills: </span>{tournamentService.getMatchKills(match)}</div>
         <div><span className='text-accent text-bold ml'>Pts: </span>{tournamentService.getPositionPoint(match.position)}</div>
         <div><span className='text-accent text-bold ml'>Total: </span>{tournamentService.getMatchPoint(match)}</div>
@@ -36,6 +38,7 @@ function MatchCard({tournamentOpen, match, onDelete}) {
         <table className='mt'>
           <thead>
             <tr>
+              <th></th>
               <th style={{width: '100%'}}>Player</th>
               <th>Kills</th>
               <th>Dmg</th>

@@ -4,7 +4,14 @@ import './TournamentCard.css';
 
 function TournamentCard({ tournament }) {
 
-  const players = tournament.players.map((player, index) => <span className='mr-3 text-sm' key={player.id || player}>{player.name || player}</span>)
+  const players = tournament.players.map((player, index) => {
+    return (
+      <>
+        { player.avatar && <img className="avatar mr" src={player.avatar}/>}
+        { !player.avatar && <span className='mr-3 text-sm' key={player.id || player}>{player.name || player}</span> }
+      </>
+    );
+  });
 
   const deleteTournament = (e) => {
     e.stopPropagation();

@@ -154,7 +154,7 @@ export default class TournamentService {
     players.forEach((player) => {
       if(!playersResultObject[player.id]){
         playersResultObject[player.id] = {
-          player: player.name,
+          player: player,
           kills: 0,
           damage: 0,
           points: 0,

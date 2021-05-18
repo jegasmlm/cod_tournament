@@ -97,13 +97,15 @@ function EditUser({onSave}) {
       <div className="card align-stretch v-layout">
         <h3>Update your user info</h3>
         <label className="text-sm text-hint">Please update your information so you can participate in tournaments</label>
-        <div className="h-layout mt-2" style={{position: 'relative'}}>
+        <div className="h-layout mt-2">
           <input ref={avatarInput} type='file' accept="image/png, image/jpeg"  hidden onChange={(e) => loadImage(e)}/>
-          <div style={{cursor: 'pointer'}} className="avatar avatar--big" onClick={() => changeAvatar()}>
+          <div style={{cursor: 'pointer'}} className="avatar avatar--big relative" onClick={() => changeAvatar()}>
             <img className="avatar avatar--big" src={avatar || noobAvatar}/>
+            <div style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)', width: '128px', height: '128px', background: '#0004', borderRadius: '50%'}}></div>
             <label style={{position: 'absolute', left: '50%', top: '50%', transform: 'translate(-50%, -50%)'}}><i className="fas fa-upload"></i></label>
           </div>
         </div>
+        <div className="mt text-sm text-hint" style={{alignSelf: 'center'}}>You can upload a new avatar</div>
         <div className="mt-2 justify-stretch align-center form-group">
           <label style={{minWidth: '30%'}} className="mr">Email</label>
           <input className="flex-grow" value={email} onChange={(e) => setEmail(e.target.value)} disabled />
@@ -116,12 +118,12 @@ function EditUser({onSave}) {
           <label style={{minWidth: '30%'}} className="mr">Call of duty<br/>username</label>
           <input className="flex-grow" value={codUsername} onChange={(e) => onCodUsernameChanged(e.target.value)} placeholder="Your call of duty username ..."/>
         </div> 
-        <div className="form-group mt h-layout">
+        <div className="form-group mt">
           <select  style={{minWidth: '30%'}} value={platform} onChange={(e) => setPlatform(e.target.value)}>
             <option className="select-option" value="battlenet">BattleNet</option>
             <option className="select-option" value="activision">Activision</option>
           </select>
-          <input className="flex-grow " placeholder={platform === 'battlenet' ? 'Battle tag ...' : 'Actividion Id ...'} value={gamerTag} onChange={(e) => onGamerTagChanged(e.target.value)}/>
+          <input className="flex-grow " placeholder={platform === 'battlenet' ? 'Battlenet Id (Bob#2586)...' : 'Actividion Id ...'} value={gamerTag} onChange={(e) => onGamerTagChanged(e.target.value)}/>
         </div> 
         <button className="mt" onClick={() => saveUser()} disabled={!valid}>Save</button>
       </div>

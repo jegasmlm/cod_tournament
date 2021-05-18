@@ -21,7 +21,15 @@ function TeamCard({ tournamentOpen, team}) {
     setIsOpen([false]);
   };
 
-  const players = team.players.map((player, index) => <span className='mr text-sm' key={player.id || index}>{player.name || player}</span>)
+  const players = team.players.map((player, index) => {
+
+    return (
+      <>
+        { player.avatar && <img className="avatar mr" src={player.avatar}/>}
+        { !player.avatar && <span className='mr text-sm' key={player.id || index}>{player.name || player}</span> }
+      </>
+    );
+  });
 
   return (
     <div className='card v-layout align-stretch'>
