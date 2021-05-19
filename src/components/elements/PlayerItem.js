@@ -16,7 +16,7 @@ function PlayerItem({player, horizontal, ellipsis, tooltip, size, className, onC
       }} {...props}
     >
       <Avatar 
-        big={size === 'lg'} 
+        size={size} 
         url={player && player.avatar || null}
       />
       { !tooltip && (<span 
