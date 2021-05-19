@@ -137,12 +137,12 @@ export default class TournamentService {
 
   getPositionPoint(position) {
     switch(position) {
-      case '1': return 20;
-      case '2': return 15;
-      case '3': return 10;
-      case '4': return 5;
-      case '5': return 3;
-      case '6': return 2;
+      case 1: return 20;
+      case 2: return 15;
+      case 3: return 10;
+      case 4: return 5;
+      case 5: return 3;
+      case 6: return 2;
       default: return 0;
     }
   }
