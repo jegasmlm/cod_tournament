@@ -126,11 +126,16 @@ code {
   height: 2rem;
   object-fit: cover;
   object-position: center;
+  transition: transform 200ms ease-in-out;
 }
 
 .avatar--big {
   width: 8rem;
   height: 8rem;
+}
+
+.avatar:hover {
+  transform: scale(1.2);
 }
 
 .float-menu {
