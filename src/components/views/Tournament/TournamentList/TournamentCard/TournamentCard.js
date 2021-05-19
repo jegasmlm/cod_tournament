@@ -9,7 +9,7 @@ function TournamentCard({ tournament }) {
 
   const players = toList(tournament.players).map((player, index) => {
     return (
-      <PlayerItem style={{marginTop: 4, marginLeft: 4}} size='xs' player={player} />
+      <PlayerItem style={{marginTop: 8, marginLeft: 8}} ellipsis size='xs' player={player} />
     );
   });
 
