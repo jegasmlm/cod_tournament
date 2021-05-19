@@ -24,7 +24,7 @@ function PlayerItem({player, horizontal, ellipsis, tooltip, size, className, onC
         style={{
           marginLeft: horizontal ? 4 : 0, 
           marginTop: horizontal ? 0 : 4,
-          width: !ellipsis ? 'initial' : size === 'lg' ? 16*9 : 16*3,
+          width: !ellipsis ? 'initial' : size === 'lg' ? 72 : size === 'sm' || size === 'xs' ? 16 : 16*3,
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
