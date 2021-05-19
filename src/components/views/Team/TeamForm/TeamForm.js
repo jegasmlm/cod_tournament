@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Services from '../../../../services/Services';
+import PlayerItem from '../../../elements/PlayerItem';
 import './TeamForm.css';
 
 function TeamForm({tournamentId, players, teamSize, onSave}) {
@@ -50,7 +51,7 @@ function TeamForm({tournamentId, players, teamSize, onSave}) {
   const playerCheckboxes = players.map((player, index) => {
     return (
       <div key={index} className="h-layout mt">
-        <label htmlFor={(player.id || player)+'_checkbox'} className='flex-grow'>{player.name || player}</label>
+        <PlayerItem htmlFor={(player.id || player)+'_checkbox'} className='flex-grow mr' player={player} horizontal/>
         <input type='checkbox' id={(player.id || player)+'_checkbox'} checked={team.indexOf(index) > -1} onChange={(e) => select(index, e.target.checked)}/>
       </div>
     )

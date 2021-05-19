@@ -3,6 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 import { useEffect, useState } from 'react';
 import './RandomTeams.css';
 import Services from '../../../services/Services';
+import PlayerItem from '../../elements/PlayerItem';
 
 let teamNames = [];
 
@@ -63,7 +64,7 @@ function RandomTeams({tournamentId, teamSize, players, onSave}) {
   }
 
   const teams = randomTeams.map((team, index) => {
-    const players = team.players.map((player) => <span className='mr' key={player.id || player}>{player.name || player}</span>)
+    const players = team.players.map((player) => <PlayerItem className='mr' key={player.id || player} player={player}/>)
     return (
       <div className='mb-3' key={index}>
         <h3>{team.name}</h3>
