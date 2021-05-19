@@ -25,7 +25,7 @@ function TeamCard({ tournamentOpen, team}) {
 
   const players = team.players.filter(player => player).map((player, index) => {
     return (
-      <PlayerItem className="mr mb" size="xs" player={player} key={player.id || index} />
+      <PlayerItem tooltip className="mr mb" size="xs" player={player} key={player.id || index} />
     );
   });
 

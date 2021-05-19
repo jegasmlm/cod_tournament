@@ -167,6 +167,13 @@ code {
   transform: translate(-50%, -100%) scale(0.9);
 }
 
+.tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 h1, h2, h3 {
   text-transform: uppercase;
   color: var(--accent-color);
@@ -274,8 +281,32 @@ input:-webkit-autofill:active {
   opacity: 0.4;
 }
 
+.bg-accent {
+  background: var(--accent-color);
+}
+
+.bg-dark {
+  background: var(--dark-color);
+}
+
+.round-rect {
+  border-radius: 0.5rem;
+}
+
 .p0 {
   padding: 0;
+}
+
+.p-s2 {
+  padding: 0.5rem;
+}
+
+.p-s1 {
+  padding: 0.75rem;
+}
+
+.p {
+  padding: 1rem;
 }
 
 .m0 {
@@ -436,6 +467,10 @@ input:-webkit-autofill:active {
 
 .text-bold{
   font-weight: bold;
+}
+
+.text-center {
+  text-align: center;
 }
 
 table th {

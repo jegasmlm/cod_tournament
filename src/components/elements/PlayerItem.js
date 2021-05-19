@@ -1,10 +1,15 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Avatar from './Avatar'
+import Tooltip from './Tooltip';
 
-function PlayerItem({player, horizontal, ellipsis, size, className, onClick, style, props}) {
+function PlayerItem({player, horizontal, ellipsis, tooltip, size, className, onClick, style, props}) {
+  const [showTooltip, setShowTooltip] = useState(false);
+
   return (
     <div 
-      className={className + (horizontal ? ' h-layout align-center justify-left flex-nowrap' : ' v-layout') + ' '}
+      className={className + (horizontal ? ' h-layout align-center justify-left flex-nowrap' : ' v-layout') + ' relative'}
+      onMouseEnter={() => setShowTooltip(true)}
+      onMouseLeave={() => setShowTooltip(false)}
       onClick={onClick} 
       style={{
         ...style
@@ -14,7 +19,7 @@ function PlayerItem({player, horizontal, ellipsis, size, className, onClick, sty
         big={size === 'lg'} 
         url={player && player.avatar || null}
       />
-      <span 
+      { !tooltip && (<span 
         className={`${size === 'sm' ? 'text-sm' : size === 'xs' ? 'text-xs' : size === 'lg' ? 'text-lg' : ''} text-secondary`} 
         style={{
           marginLeft: horizontal ? 4 : 0, 
@@ -27,7 +32,8 @@ function PlayerItem({player, horizontal, ellipsis, size, className, onClick, sty
         }}
       >
         {player && player.name || player}
-      </span>
+      </span> )}
+      { (tooltip && showTooltip) && <Tooltip>{player.name}</Tooltip> }
     </div>
       
   )
