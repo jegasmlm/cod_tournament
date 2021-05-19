@@ -3,6 +3,7 @@ import Services from '../../../../services/Services';
 import { v4 as uuidv4 } from 'uuid';
 import './MatchForm.css';
 import { useEffect } from 'react';
+import { toList } from '../../../../utils/Utils';
 
 const codService = Services.cod();
 
@@ -22,6 +23,13 @@ function MatchForm({team, onSave}) {
       }
     })
   })
+  const [players, setPlayers] = useState([]);
+
+  useEffect(() =>{
+    Services.tournaments().listPlayers(players => {
+      setPlayers(toList(players));
+    } , team.tournamentId);
+  }, []);
 
   useEffect(() => {
     validate();
@@ -34,9 +42,10 @@ function MatchForm({team, onSave}) {
         setLoadginMatch(false);
         const matchCopy = {...match};
         match.teamScore.forEach((playerScore, index) => {
-          if(playerScore.player.codUsername){
+          const playerInfo = players.find((player) => player.id === playerScore.player);
+          if(playerInfo.codUsername){
             codMatch.data.allPlayers.forEach((codPlayer) => {
-              if(codPlayer.player.username.toLowerCase().includes(playerScore.player.codUsername.toLowerCase())) {
+              if(codPlayer.player.username.toLowerCase().includes(playerInfo.codUsername.toLowerCase())) {
                 matchCopy.teamScore[index].kills = codPlayer.playerStats.kills;
                 matchCopy.teamScore[index].damage = codPlayer.playerStats.damageDone;
                 matchCopy.position = codPlayer.playerStats.teamPlacement;
