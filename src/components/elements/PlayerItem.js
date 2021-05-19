@@ -19,10 +19,11 @@ function PlayerItem({player, horizontal, ellipsis, size, className, onClick, sty
         style={{
           marginLeft: horizontal ? 4 : 0, 
           marginTop: horizontal ? 0 : 4,
-          maxWidth: !ellipsis ? '' : size === 'lg' ? 16*9 : 16*3,
+          width: !ellipsis ? 'initial' : size === 'lg' ? 16*9 : 16*3,
           whiteSpace: 'nowrap',
           overflow: 'hidden',
           textOverflow: 'ellipsis',
+          textAlign: 'center'
         }}
       >
         {player && player.name || player}
