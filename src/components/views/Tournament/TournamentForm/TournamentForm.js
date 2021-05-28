@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Services from '../../../../services/Services';
+import Services, { fsServices } from '../../../../services/Services';
 import { v4 as uuidv4 } from 'uuid';
 import './TournamentForm.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -46,14 +46,16 @@ function TournamentForm({onSave}) {
  
   const save = () => {
     if(validForm) {
-      Services.tournaments().save({
+      const newTournament = {
         created: new Date(),
         open: true,
         name: name,
         teamSize: teamSize,
         players: players,
         teams: []
-      });
+      }
+      fsServices.tournaments.create(newTournament);
+      Services.tournaments().save(newTournament);
       onSave();
     }
   };

@@ -4,6 +4,9 @@ import AuthService from "./AuthService";
 import StorageService from "./StorageService";
 import CodService from "./CodService";
 import UserService from "./UserService";
+import FSTournamentService from './firestore/TournamentService';
+import FSUserService from './firestore/UserService';
+import FSMatchService from './firestore/MatchService';
 
 class Service {
 
@@ -36,3 +39,13 @@ class Service {
 const Services = new Service();
 
 export default Services;
+
+const fsTournamentService = new FSTournamentService();
+const fsMatchService = new FSMatchService();
+const fsUserService = new FSUserService();
+
+export const fsServices = {
+  tournaments : fsTournamentService,
+  users : fsUserService,
+  matches : fsMatchService,
+};

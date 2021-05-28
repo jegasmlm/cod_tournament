@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import Services from '../../../services/Services';
+import Services, { fsServices } from '../../../services/Services';
 import { Modal } from '../../elements/Modal';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import TournamentForm from '../Tournament/TournamentForm/TournamentForm';
@@ -25,6 +25,9 @@ function Home() {
   }, [])
 
   const loadTournaments = () => {
+    fsServices.tournaments.listByPlayer(Services.auth().loggedUser().uid, (tournaments) => {
+      console.log(tournaments)
+    })
     Services.tournaments().list((tournaments) => {
       setTournaments(tournaments);
     })
