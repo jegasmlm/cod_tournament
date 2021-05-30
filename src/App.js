@@ -13,6 +13,7 @@ import Services from './services/Services';
 import Login from './components/views/Auth/Login/Login';
 import Signup from './components/views/Auth/Signup/Signup';
 import EditUser from './components/views/User/EditUser';
+import Admin from './components/views/Admin';
 
 function App() {
   const [auth, setAuth] = useState({loggedUser: null, isUserSet: false})
@@ -51,12 +52,9 @@ function App() {
               <Redirect exact from="/login" to="/" />
               <Redirect exact from="/signup" to="/" />
               <Route path="/tournament/:id" component={Tournament} />
-              <Route path="/editUser">
-                <EditUser onSave={() => {}} />
-              </Route>
-              <Route path="/">
-                <Home />
-              </Route>
+              <Route path="/editUser"><EditUser onSave={() => {}} /></Route>
+              <Route path="/admin"><Admin/></Route>
+              <Route path="/"><Home /></Route>
             </Switch>
           </HashRouter>
         </div>

@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Services from '../../../../../services/Services';
-import Avatar from '../../../../elements/Avatar';
 import { Modal } from '../../../../elements/Modal';
 import PlayerItem from '../../../../elements/PlayerItem';
 import MatchForm from '../../../Match/MatchForm/MatchForm';

@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import Services from '../../../services/Services';
-import Avatar from '../../elements/Avatar';
 import PlayerItem from '../../elements/PlayerItem';
 import AchievementList from './AchievementList/AchievementList';
 import Position from './Position';

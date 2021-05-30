@@ -12,8 +12,8 @@ export default class UserService extends Service {
     const matches = await fsServices.matches.listByPlayer(user.id, null, false)
     if(tournaments.length === 0 && matches.length === 0) return user;
     const batch = this.db.batch();
-    tournaments.foreach((tournament) => batch.set(fsServices.tournaments.doc(tournament.id), {[`players.${user.id}`]: user}));
-    matches.foreach((match) => batch.set(fsServices.matches.doc(match.id), {[`players.${user.id}`]: user}));
+    tournaments.foreach((tournament) => batch.update(fsServices.tournaments.doc(tournament.id), {[`players.${user.id}`]: user}));
+    matches.foreach((match) => batch.update(fsServices.matches.doc(match.id), {[`players.${user.id}`]: user}));
     return batch.commit();
   }
 

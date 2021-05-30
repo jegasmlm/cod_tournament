@@ -3,47 +3,47 @@ import Services from '../../../../services/Services';
 import PlayerItem from '../../../elements/PlayerItem';
 import './TeamForm.css';
 
-function TeamForm({tournamentId, players, teamSize, onSave}) {
+function TeamForm({players, teamSize, onSave}) {
   const [validForm, setValidForm] = useState(false);
-  const [team, setTeam] = useState([])
+  const [playerIndices, setPlayerIndices] = useState([])
 
   const select = (index, value) => {
-    const teamCopy = [...team];
+    const teamCopy = [...playerIndices];
     if(value){
       teamCopy.push(index);
     } else {
-      const indexToRemove = team.indexOf(index);
+      const indexToRemove = playerIndices.indexOf(index);
       if (indexToRemove > -1) {
         teamCopy.splice(indexToRemove, 1);
       }
     }
     const teamCopySliced = teamCopy.slice(Math.max(0, teamCopy.length-teamSize), teamCopy.length);
-    setTeam(teamCopySliced);
+    setPlayerIndices(teamCopySliced);
   }
 
   useEffect(() => {
     players.forEach((player, index) => {
-      if(team.indexOf(index) === -1){
+      if(playerIndices.indexOf(index) === -1){
         document.getElementById((player.id || player)+'_checkbox').checked = false
       }
     });
     validate();
-  }, [team]);
+  }, [playerIndices]);
 
   const validate = () => {
-    setValidForm(team.length === parseInt(teamSize));
+    setValidForm(playerIndices.length === parseInt(teamSize));
   }
 
   const save = () => {
     if(validForm) {
       Services.names().getName().then((name) => {
-        Services.tournaments().saveTeam(tournamentId, {
+        /*Services.tournaments().saveTeam(tournamentId, {
           name: name,
           tournamentId: tournamentId,
           players: team.map((index) => players[index]),
           matches: []
-        });
-        onSave(team);
+        });*/
+        onSave(name, playerIndices.map(index => players[index].id));
       })
     }
   }
@@ -52,7 +52,7 @@ function TeamForm({tournamentId, players, teamSize, onSave}) {
     return (
       <div key={index} className="h-layout mt">
         <PlayerItem htmlFor={(player.id || player)+'_checkbox'} className='flex-grow mr' player={player} horizontal/>
-        <input type='checkbox' id={(player.id || player)+'_checkbox'} checked={team.indexOf(index) > -1} onChange={(e) => select(index, e.target.checked)}/>
+        <input type='checkbox' id={(player.id || player)+'_checkbox'} checked={playerIndices.indexOf(index) > -1} onChange={(e) => select(index, e.target.checked)}/>
       </div>
     )
   });
@@ -63,7 +63,7 @@ function TeamForm({tournamentId, players, teamSize, onSave}) {
         <h3 className='text-accent'>Players</h3>
         {playerCheckboxes}
       </div>
-      <button className='mt' onClick={() => save()} disabled={!validForm}>save</button>
+      <button className='mt' onClick={save} disabled={!validForm}>save</button>
     </div>
   );
 }

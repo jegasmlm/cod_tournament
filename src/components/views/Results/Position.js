@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState, useEffect } from 'react';
-import Avatar from '../../elements/Avatar'
 import PlayerItem from '../../elements/PlayerItem'
 
 function Position({playerScore, place}) {

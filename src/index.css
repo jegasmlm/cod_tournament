@@ -318,6 +318,18 @@ input:-webkit-autofill:active {
   margin: 0;
 }
 
+.m {
+  margin: 1rem;
+}
+
+.m2 {
+  margin: 1.5rem;
+}
+
+.m3 {
+  margin: 2rem;
+}
+
 .mt {
   margin-top: 1rem;
 }

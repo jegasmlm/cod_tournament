@@ -23,8 +23,12 @@ export default class Service {
     return entity;
   }
 
-  create(entity) {
+  create(entity, id=null) {
     console.debug(`[Service.${this.collectionName}.create]`, entity);
+    if(id) {
+      entity.id = id;
+       return this.collection().doc(id).set(entity).then(() => this.duplicate(entity))
+    }
     return this.collection().add(entity).then((docRef) => {
       entity.id = docRef.id;
       return this.duplicate(entity)
@@ -32,7 +36,7 @@ export default class Service {
   }
 
   liveRead(id, callback, queries) {
-    console.debug(`[Service.${this.collectionName}.liveRead.${id}]`, queries.map(query => query.join(' ')));
+    console.debug(`[Service.${this.collectionName}.liveRead.${id}]`, queries ? queries.map(query => query.join(' ')) : '');
     return this.doc(id, queries).onSnapshot((snapshot) => callback(snapshot.data()));
   }
 
@@ -40,28 +44,32 @@ export default class Service {
     if(live){
       this.liveRead(id, callback, queries);
     } else {
-      console.debug(`[Service.${this.collectionName}.read.${id}]`, queries.map(query => query.join(' ')));
+      console.debug(`[Service.${this.collectionName}.read.${id}]`, queries ? queries.map(query => query.join(' ')) : '');
       return this.doc(id, queries).get().then(doc => doc.data());
     }
   }
 
   update(id, data, queries){
-    console.debug(`[Service.${this.collectionName}.update.${id}]`, data, queries.map(query => query.join(' ')));
+    console.debug(`[Service.${this.collectionName}.update.${id}]`, data, queries ? queries.map(query => query.join(' ')) : '');
     return this.doc(id, queries).update(data).then(() => {
       return this.duplicate(data);
     });
   }
 
   delete(id, queries) {
-    console.debug(`[Service.${this.collectionName}.delete.${id}]`, queries.map(query => query.join(' ')));
+    console.debug(`[Service.${this.collectionName}.delete.${id}]`, queries ? queries.map(query => query.join(' ')) : '');
     return this.doc(id, queries).delete()
   }
 
   liveList(callback, queries) {
-    console.debug(`[Service.${this.collectionName}.liveList]`, queries.map(query => query.join(' ')));
+    console.debug(`[Service.${this.collectionName}.liveList]`, queries ? queries.map(query => query.join(' ')) : '');
     return this.collection(queries).onSnapshot((snapshot) =>  {
       const docs = [];
-      snapshot.forEach(doc => docs.push(doc.data()));
+      snapshot.forEach(doc => {
+        const entity = doc.data();
+        entity.id = doc.id;
+        docs.push(entity)
+      });
       callback(docs)
     });
   }
@@ -70,11 +78,13 @@ export default class Service {
     if(live){
       return this.liveList(callback, queries);
     } else {
-      console.debug(`[Service.${this.collectionName}.list]`, queries.map(query => query.join(' ')));
+      console.debug(`[Service.${this.collectionName}.list]`, queries ? queries.map(query => query.join(' ')) : '');
       return this.collection(queries).get().then(docs => {
         const entities = [];
         docs.forEach(doc => {
-          entities.push(doc.data);
+          const entity = doc.data();
+          entity.id = doc.id;
+          entities.push(entity)
         });
         return entities;
       });

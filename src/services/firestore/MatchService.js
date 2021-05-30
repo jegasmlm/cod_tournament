@@ -11,7 +11,13 @@ export default class MatchService extends Service {
 
   duplicate(match) {
     const tournamentRef = fsServices.tournaments.doc(match.tournamentId);
-    return tournamentRef.set({[`teams.${match.teamId}.${match.id}`]: match});
+    return tournamentRef.update({[`teams.${match.teamId}.${match.id}`]: match});
+  }
+
+  deleteDuplicates(id) {
+    const match = this.read(id, null, null, false);
+    const tournamentRef = fsServices.tournaments.doc(match.tournamentId);
+    return tournamentRef.update({[`teams.${match.teamId}.${match.id}`]: firebase.firestore.FieldValue.delete()});
   }
 
   listByPlayer(playerId, callback, live = true) {

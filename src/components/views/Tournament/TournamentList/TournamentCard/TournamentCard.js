@@ -2,7 +2,6 @@ import moment from 'moment';
 import Services from '../../../../../services/Services';
 import './TournamentCard.css';
 import { toList } from '../../../../../utils/Utils';
-import Avatar from '../../../../elements/Avatar';
 import PlayerItem from '../../../../elements/PlayerItem';
 
 function TournamentCard({ tournament }) {

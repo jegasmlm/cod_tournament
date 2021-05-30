@@ -13,7 +13,13 @@ export default class TournamentService extends Service {
 
   addTeam(tournamentId, team){
     this.doc(tournamentId).update({
-      "teams": firebase.firestore.FieldValue.arrayUnion(team)
+      [`teams.${team.id}`]: team
+    })
+  }
+
+  deleteTeam(tournamentId, teamId) {
+    this.doc(tournamentId).update({
+      [`teams.${teamId}`]: firebase.firestore.FieldValue.delete()
     })
   }
 

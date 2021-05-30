@@ -2,22 +2,23 @@ import React, { useState } from 'react'
 import Avatar from './Avatar'
 import Tooltip from './Tooltip';
 
-function PlayerItem({player, horizontal, ellipsis, tooltip, size, className, onClick, style, props}) {
+function PlayerItem({player, horizontal, ellipsis, tooltip, size, className, onClick, style, ...props}) {
   const [showTooltip, setShowTooltip] = useState(false);
 
   return (
     <div 
+      {...props}
       className={className + (horizontal ? ' h-layout align-center justify-left flex-nowrap' : ' v-layout') + ' relative'}
       onMouseEnter={() => setShowTooltip(true)}
       onMouseLeave={() => setShowTooltip(false)}
       onClick={onClick} 
       style={{
         ...style
-      }} {...props}
+      }}
     >
       <Avatar 
         size={size} 
-        url={player && player.avatar || null}
+        url={(player && player.avatar) ? player.avatar : null}
       />
       { !tooltip && (<span 
         className={`${size === 'sm' ? 'text-sm' : size === 'xs' ? 'text-xs' : size === 'lg' ? 'text-lg' : ''} text-secondary`} 
@@ -31,7 +32,7 @@ function PlayerItem({player, horizontal, ellipsis, tooltip, size, className, onC
           textAlign: 'center'
         }}
       >
-        {player && player.name || player}
+        {(player && player.name) ? player.name : player}
       </span> )}
       { (tooltip && showTooltip) && <Tooltip>{player.name}</Tooltip> }
     </div>

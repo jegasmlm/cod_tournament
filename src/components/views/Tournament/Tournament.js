@@ -9,7 +9,6 @@ import moment from 'moment';
 import RandomTeams from '../RandomTeams/RandomTeams';
 import NavigationBar from '../NavigationBar/NavigationBar';
 import { toList } from '../../../utils/Utils';
-import Avatar from '../../elements/Avatar';
 import PlayerItem from '../../elements/PlayerItem';
 
 function Tournament(props) {

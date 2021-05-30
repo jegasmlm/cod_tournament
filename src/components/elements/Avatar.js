@@ -5,6 +5,7 @@ function Avatar({url, size}) {
   if(url === null){
     return (
       <img 
+        alt="avatar"
         className={`avatar`} 
         src={noobAvatar} 
         style={{
@@ -16,6 +17,7 @@ function Avatar({url, size}) {
   }
   return (
     <img 
+      alt="avatar"
       className={`avatar`} 
       src={url}
       style={{

@@ -1,24 +1,29 @@
 import { useEffect, useState } from 'react';
-import Services, { fsServices } from '../../../../services/Services';
-import { v4 as uuidv4 } from 'uuid';
+import Services from '../../../../services/Services';
 import './TournamentForm.css';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import React from "react";
-import ReactDOM from "react-dom"
-import paypal from 'paypal-checkout';
+//import ReactDOM from "react-dom"
+//import paypal from 'paypal-checkout';
 import { toList } from '../../../../utils/Utils';
 import PlayerItem from '../../../elements/PlayerItem';
+import FormGroup from '../../../elements/FormGroup';
 
-const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
+//const PayPalButton = window.paypal.Buttons.driver("react", { React, ReactDOM });
 
-function TournamentForm({onSave}) {
+function TournamentForm({onSave, data}) {
   const [users, setUsers] = useState([]);
   const [playerSearch, setPlayerSearch] = useState('');
   const [searchedPlayers, setSearchedPlayers] = useState({});
   const [validForm, setValidForm] = useState(false);
-  const [name, setName] = useState('');
-  const [teamSize, setTeamSize] = useState(4);
-  const [players, setPlayers] = useState({});
+  const [tournament, setTournament] = useState(data || {
+    name: '',
+    teamSize: 4,
+    players: {},
+    teams: [],
+    created: new Date(),
+    open: true,
+  })
 
   useEffect(() => {
     Services.users().list((users) => {
@@ -28,42 +33,29 @@ function TournamentForm({onSave}) {
 
   useEffect(() => {
     validate();
-  }, [name, teamSize, players]);
+  }, [tournament]);
 
   const validate = () => {
-    setValidForm(name !== '' && teamSize !== '' && toList(players).length >= teamSize);
+    setValidForm(tournament.name !== '' && tournament.teamSize !== '' && toList(tournament.players).length >= tournament.teamSize);
   }
  
-  const addPlayer = () => {
-    setPlayers([...players, {id: uuidv4(), name:''}]);
-  };
- 
   const setPlayerName = (index, name) => {
-    const copy = {...players};
-    copy[index].name = name
-    setPlayers(copy);
+    const copy = {...tournament.players};
+    copy[index].name = name;
+    setTournament({...tournament, players: copy});
   };
  
   const save = () => {
     if(validForm) {
-      const newTournament = {
-        created: new Date(),
-        open: true,
-        name: name,
-        teamSize: teamSize,
-        players: players,
-        teams: []
-      }
-      fsServices.tournaments.create(newTournament);
-      Services.tournaments().save(newTournament);
-      onSave();
+      Services.tournaments().save(tournament);
+      onSave(tournament);
     }
   };
 
   const deletePlayer = (index) => {
-    const playersCopy = {...players};
+    const playersCopy = {...tournament.players};
     delete playersCopy[index];
-    setPlayers(playersCopy);
+    setTournament({...tournament, players: playersCopy});
   } 
 
   const searchPlayer = (value) => {
@@ -73,7 +65,7 @@ function TournamentForm({onSave}) {
         user.name.toLowerCase().includes(value.toLowerCase()) || 
         user.gamerTag.toLowerCase().includes(value.toLowerCase()) || 
         user.email.includes(value.toLowerCase())) && 
-        (toList(players).map((player) => player.id).indexOf(user.id) === -1) );
+        (toList(tournament.players).map((player) => player.id).indexOf(user.id) === -1) );
       const searchObject = {}
       filteredUsers.forEach((user) => {
         searchObject[user.id] = user;
@@ -85,14 +77,13 @@ function TournamentForm({onSave}) {
   };
 
   const onSearchedPlayerClick = (index) => {
-    const playersCopy = {...players};
+    const playersCopy = {...tournament.players};
     playersCopy[index] = searchedPlayers[index];
     searchPlayer('');
-    console.log(playersCopy);
-    setPlayers(playersCopy);
+    setTournament({...tournament, players: playersCopy});
   }
 
-  const Tournamentplayers = toList(players).map((player) => {
+  const Tournamentplayers = toList(tournament.players).map((player) => {
     return (
       <CSSTransition key={player.id} timeout={400} classNames='input-list-item'>
         <div className="mb h-layout justify-stretch">
@@ -109,6 +100,7 @@ function TournamentForm({onSave}) {
     );
   });
   
+  /*
   const createOrder = (data, actions) =>{
     return actions.order.create({
       purchase_units: [
@@ -124,18 +116,16 @@ function TournamentForm({onSave}) {
   const onApprove = (data, actions) => {
     return actions.order.capture();
   };
+  */
 
   return (
     <div className='mt v-layout align-stretch'>
       <h2>Create Tournament</h2>
       <div className="v-layout align-stretch">
         <div className="form-group h-layout">
-          <input className='flex-grow' id='tournamentNameInput' type='text' value={name} onChange={(e) => setName(e.target.value)} placeholder='Tournament Name'/>
+          <input className='flex-grow' id='tournamentNameInput' type='text' value={tournament.name} onChange={(e) => setTournament({...tournament, name: e.target.value})} placeholder='Tournament Name'/>
         </div>
-        <div className="form-group h-layout">
-          <label className='flex-grow mr' htmlFor='teamSizeInput'>Team size</label>
-          <input id='teamSizeInput' type='number' value={teamSize} onChange={(e) => setTeamSize(e.target.value)} autoComplete="off"  min="1" max="4"/>
-        </div>
+        <FormGroup label="Team size" type='number' value={tournament.teamSize} onChange={(e) => setTournament({...tournament, teamSize: e.target.value})} autoComplete="off"  min="1" max="4"/>
       </div>
       <div className="z2 v-layout align-stretch relative">
         <div className='h-layout justify-left'>
